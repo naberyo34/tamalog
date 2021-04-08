@@ -1,8 +1,9 @@
 ---
-title: "GatsbyとTypeScriptでブログを作った"
+title: "GatsbyプロジェクトにStorybookを導入した"
 date: "20210409"
 ---
 
-# Gatsbyでブログを作りました
+# 要約
 
-作り申した。
+- storybookを導入したら急にGatsbyのビルドがコケた
+- babel-preset-gatsbyを導入したら解決した
