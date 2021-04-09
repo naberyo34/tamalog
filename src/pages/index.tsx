@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql, PageProps } from "gatsby";
-import Header from "../organisms/Header";
+import Header from "organisms/Header";
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
