@@ -1,9 +1,9 @@
-import React from "react";
-import { Link, graphql, PageProps } from "gatsby";
+import React from 'react';
+import { Link, graphql, PageProps } from 'gatsby';
 
 const BlogPostTemplate: React.FC<
   PageProps<GatsbyTypes.BlogPostBySlugQuery>
-> = ({ data, location }) => {
+> = ({ data }) => {
   const post = data.markdownRemark;
   const { previous, next } = data;
 
@@ -19,7 +19,7 @@ const BlogPostTemplate: React.FC<
           <p>{post?.frontmatter?.date}</p>
         </header>
         <section
-          dangerouslySetInnerHTML={{ __html: post?.html || "" }}
+          dangerouslySetInnerHTML={{ __html: post?.html || '' }}
           itemProp="articleBody"
         />
       </article>
@@ -35,14 +35,14 @@ const BlogPostTemplate: React.FC<
         >
           <li>
             {next && (
-              <Link to={next.fields?.slug || ""} rel="next">
+              <Link to={next.fields?.slug || ''} rel="next">
                 ← {next.frontmatter?.title}
               </Link>
             )}
           </li>
           <li>
             {previous && (
-              <Link to={previous.fields?.slug || ""} rel="prev">
+              <Link to={previous.fields?.slug || ''} rel="prev">
                 {previous.frontmatter?.title} →
               </Link>
             )}

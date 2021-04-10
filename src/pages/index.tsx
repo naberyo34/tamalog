@@ -1,21 +1,14 @@
-import React from "react";
-import { Link, graphql, PageProps } from "gatsby";
-import Header from "organisms/Header";
+import React from 'react';
+import { Link, graphql, PageProps } from 'gatsby';
+import Header from 'organisms/Header';
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
-  location,
 }) => {
   const posts = data.allMarkdownRemark.nodes;
 
   if (posts.length === 0) {
-    return (
-      <p>
-        No blog posts found. Add markdown posts to "content/blog" (or the
-        directory you specified for the "gatsby-source-filesystem" plugin in
-        gatsby-config.js).
-      </p>
-    );
+    return <p>ブログ記事がありません</p>;
   }
 
   return (
@@ -33,7 +26,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
                 itemType="http://schema.org/Article"
               >
                 <h2>
-                  <Link to={post.fields?.slug || ""} itemProp="url">
+                  <Link to={post.fields?.slug || ''} itemProp="url">
                     <span itemProp="headline">{title}</span>
                   </Link>
                 </h2>
@@ -41,7 +34,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: post.excerpt || "",
+                      __html: post.excerpt || '',
                     }}
                     itemProp="description"
                   />
