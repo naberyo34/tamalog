@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 1000px;
+  padding-top: 40px;
+}

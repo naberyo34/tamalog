@@ -2,11 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  background: #fff;
+  height: 40px;
+  background: #444;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .inner {
   width: 1000px;
+  text-align: center;
 }

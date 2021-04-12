@@ -94,8 +94,9 @@ module.exports = {
   // 絶対パスインポートをESLint側でも有効化する
   settings: {
     'import/resolver': {
-      node: {
-        paths: ['src'],
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
       },
     },
   },

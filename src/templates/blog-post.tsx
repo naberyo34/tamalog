@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
+import Layout from '@/templates/Layout';
 
 const BlogPostTemplate: React.FC<
   PageProps<GatsbyTypes.BlogPostBySlugQuery>
@@ -8,16 +9,14 @@ const BlogPostTemplate: React.FC<
   const { previous, next } = data;
 
   return (
-    <>
+    <Layout>
       <article
         className="blog-post"
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
-          <h1 itemProp="headline">{post?.frontmatter?.title}</h1>
-          <p>{post?.frontmatter?.date}</p>
-        </header>
+        <h1 itemProp="headline">{post?.frontmatter?.title}</h1>
+        <p>{post?.frontmatter?.date}</p>
         <section
           dangerouslySetInnerHTML={{ __html: post?.html || '' }}
           itemProp="articleBody"
@@ -49,7 +48,7 @@ const BlogPostTemplate: React.FC<
           </li>
         </ul>
       </nav>
-    </>
+    </Layout>
   );
 };
 

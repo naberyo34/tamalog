@@ -2,7 +2,7 @@ import React from 'react';
 import Index from './index';
 
 export default {
-  title: 'organisms/Header',
+  title: 'organisms/Footer',
 };
 
 export const Default: React.FC = () => <Index />;

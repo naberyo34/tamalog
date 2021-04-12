@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql, PageProps } from 'gatsby';
-import Header from 'organisms/Header';
+import Layout from '@/templates/Layout';
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
@@ -8,12 +8,15 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   const posts = data.allMarkdownRemark.nodes;
 
   if (posts.length === 0) {
-    return <p>ブログ記事がありません</p>;
+    return (
+      <Layout>
+        <p>ブログ記事がありません</p>
+      </Layout>
+    );
   }
 
   return (
-    <>
-      <Header />
+    <Layout>
       <ol>
         {posts.map((post) => {
           const title = post.frontmatter?.title || post.fields?.slug;
@@ -30,7 +33,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
                     <span itemProp="headline">{title}</span>
                   </Link>
                 </h2>
-                <small>{post.frontmatter?.date}</small>
+                <p>{post.frontmatter?.date}</p>
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
@@ -44,7 +47,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
           );
         })}
       </ol>
-    </>
+    </Layout>
   );
 };
 
