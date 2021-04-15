@@ -11,3 +11,13 @@
   background: #ddd;
   border-radius: 8px;
 }
+
+@media screen and (max-width: 767px) {
+  .image {
+    width: 100%;
+  }
+
+  .fallback {
+    width: 100%;
+  }
+}

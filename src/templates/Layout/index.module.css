@@ -4,6 +4,13 @@
 }
 
 .inner {
-  width: 1000px;
-  padding: 40px 0 80px;
+  width: 1040px;
+  padding: 40px 20px 80px;
+}
+
+@media screen and (max-width: 767px) {
+  .inner {
+    width: 100%;
+    padding: 20px 20px 120px;
+  }
 }

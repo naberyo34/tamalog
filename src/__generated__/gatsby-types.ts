@@ -3036,28 +3036,6 @@ declare namespace GatsbyTypes {
     };
   };
 
-  type BlogPostBySlugQueryVariables = Exact<{
-    id: Scalars['String'];
-    previousPostId: Maybe<Scalars['String']>;
-    nextPostId: Maybe<Scalars['String']>;
-  }>;
-
-  type BlogPostBySlugQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'> & {
-        readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'date'>>;
-      }
-    >;
-    readonly previous: Maybe<{
-      readonly fields: Maybe<Pick<Fields, 'slug'>>;
-      readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
-    }>;
-    readonly next: Maybe<{
-      readonly fields: Maybe<Pick<Fields, 'slug'>>;
-      readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
-    }>;
-  };
-
   type GatsbyImageSharpFixedFragment = Pick<
     ImageSharpFixed,
     'base64' | 'width' | 'height' | 'src' | 'srcSet'
@@ -3140,6 +3118,28 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
+
+  type BlogPostBySlugQueryVariables = Exact<{
+    id: Scalars['String'];
+    previousPostId: Maybe<Scalars['String']>;
+    nextPostId: Maybe<Scalars['String']>;
+  }>;
+
+  type BlogPostBySlugQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'> & {
+        readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'date'>>;
+      }
+    >;
+    readonly previous: Maybe<{
+      readonly fields: Maybe<Pick<Fields, 'slug'>>;
+      readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
+    }>;
+    readonly next: Maybe<{
+      readonly fields: Maybe<Pick<Fields, 'slug'>>;
+      readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
+    }>;
+  };
 
   type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
 
