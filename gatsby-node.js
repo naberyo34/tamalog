@@ -100,6 +100,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Frontmatter {
       title: String
+      tag: String
       date: String
     }
 

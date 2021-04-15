@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link, graphql, PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import Layout from '@/templates/Layout';
+import ArticleCard from '@/organisms/ArticleCard';
+import * as styles from './index.module.css';
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
@@ -17,36 +19,25 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
 
   return (
     <Layout>
-      <ol>
-        {posts.map((post) => {
-          const title = post.frontmatter?.title || post.fields?.slug;
+      <nav>
+        <ol className={styles.articles}>
+          {posts.map((post) => {
+            const title = post.frontmatter?.title || post.fields?.slug;
 
-          return (
-            <li key={post.fields?.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <h2>
-                  <Link to={post.fields?.slug || ''} itemProp="url">
-                    <span itemProp="headline">{title}</span>
-                  </Link>
-                </h2>
-                <p>{post.frontmatter?.date}</p>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.excerpt || '',
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          );
-        })}
-      </ol>
+            return (
+              <li key={title}>
+                <ArticleCard
+                  date={post.frontmatter?.date || ''}
+                  tag={post.frontmatter?.tag || ''}
+                  title={title || ''}
+                  excerpt={post.excerpt || ''}
+                  to={post.fields?.slug || ''}
+                />
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
     </Layout>
   );
 };
@@ -57,12 +48,13 @@ export const pageQuery = graphql`
   query BlogIndex {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
-        excerpt
+        excerpt(pruneLength: 50, truncate: true)
         fields {
           slug
         }
         frontmatter {
           date
+          tag
           title
         }
       }

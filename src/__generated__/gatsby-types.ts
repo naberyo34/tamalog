@@ -282,6 +282,8 @@ declare namespace GatsbyTypes {
 
   type SitePageContext = {
     readonly id: Maybe<Scalars['String']>;
+    readonly previousPostId: Maybe<Scalars['String']>;
+    readonly nextPostId: Maybe<Scalars['String']>;
   };
 
   type MarkdownHeading = {
@@ -559,8 +561,8 @@ declare namespace GatsbyTypes {
 
   type Frontmatter = {
     readonly title: Maybe<Scalars['String']>;
-    readonly date: Maybe<Scalars['String']>;
     readonly tag: Maybe<Scalars['String']>;
+    readonly date: Maybe<Scalars['String']>;
   };
 
   type Fields = {
@@ -1161,8 +1163,8 @@ declare namespace GatsbyTypes {
 
   type FrontmatterFilterInput = {
     readonly title: Maybe<StringQueryOperatorInput>;
-    readonly date: Maybe<StringQueryOperatorInput>;
     readonly tag: Maybe<StringQueryOperatorInput>;
+    readonly date: Maybe<StringQueryOperatorInput>;
   };
 
   type FieldsFilterInput = {
@@ -1355,8 +1357,8 @@ declare namespace GatsbyTypes {
     | 'childrenMarkdownRemark'
     | 'childrenMarkdownRemark.id'
     | 'childrenMarkdownRemark.frontmatter.title'
-    | 'childrenMarkdownRemark.frontmatter.date'
     | 'childrenMarkdownRemark.frontmatter.tag'
+    | 'childrenMarkdownRemark.frontmatter.date'
     | 'childrenMarkdownRemark.fields.slug'
     | 'childrenMarkdownRemark.excerpt'
     | 'childrenMarkdownRemark.rawMarkdownBody'
@@ -1412,8 +1414,8 @@ declare namespace GatsbyTypes {
     | 'childrenMarkdownRemark.internal.type'
     | 'childMarkdownRemark.id'
     | 'childMarkdownRemark.frontmatter.title'
-    | 'childMarkdownRemark.frontmatter.date'
     | 'childMarkdownRemark.frontmatter.tag'
+    | 'childMarkdownRemark.frontmatter.date'
     | 'childMarkdownRemark.fields.slug'
     | 'childMarkdownRemark.excerpt'
     | 'childMarkdownRemark.rawMarkdownBody'
@@ -2246,6 +2248,8 @@ declare namespace GatsbyTypes {
 
   type SitePageContextFilterInput = {
     readonly id: Maybe<StringQueryOperatorInput>;
+    readonly previousPostId: Maybe<StringQueryOperatorInput>;
+    readonly nextPostId: Maybe<StringQueryOperatorInput>;
   };
 
   type SitePageConnection = {
@@ -2475,7 +2479,9 @@ declare namespace GatsbyTypes {
     | 'internal.mediaType'
     | 'internal.owner'
     | 'internal.type'
-    | 'context.id';
+    | 'context.id'
+    | 'context.previousPostId'
+    | 'context.nextPostId';
 
   type SitePageGroupConnection = {
     readonly totalCount: Scalars['Int'];
@@ -2536,8 +2542,8 @@ declare namespace GatsbyTypes {
   type MarkdownRemarkFieldsEnum =
     | 'id'
     | 'frontmatter.title'
-    | 'frontmatter.date'
     | 'frontmatter.tag'
+    | 'frontmatter.date'
     | 'fields.slug'
     | 'excerpt'
     | 'rawMarkdownBody'
@@ -3363,7 +3369,9 @@ declare namespace GatsbyTypes {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, 'excerpt'> & {
           readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<Pick<Frontmatter, 'date' | 'title'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tag' | 'title'>
+          >;
         }
       >;
     };
@@ -3389,14 +3397,6 @@ declare namespace GatsbyTypes {
       readonly fields: Maybe<Pick<Fields, 'slug'>>;
       readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
     }>;
-  };
-
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
   };
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -3481,4 +3481,12 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
+
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+  type PagesQueryQuery = {
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
+    };
+  };
 }
