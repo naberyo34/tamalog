@@ -1,5 +1,7 @@
 // see: https://www.gatsbyjs.com/docs/how-to/testing/visual-testing-with-storybook/
 
+import 'minireset.css';
+import '../src/styles/foundation.css';
 import { action } from '@storybook/addon-actions';
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
