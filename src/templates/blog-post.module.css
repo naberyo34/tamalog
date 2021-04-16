@@ -4,6 +4,7 @@
 }
 
 .inner {
+  width: 100%;
   max-width: 800px;
 }
 
@@ -52,10 +53,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .inner {
-    max-width: auto;
-  }
-
   .section {
     padding: 0;
     background: none;

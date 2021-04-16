@@ -3,6 +3,7 @@ import { graphql, PageProps } from 'gatsby';
 import Layout from '@/templates/Layout';
 import SEO from '@/components/SEO';
 import ArticleHeader from '@/molecules/ArticleHeading';
+import formatDisplayDate from '@/services/formatDisplayDate';
 import * as styles from './blog-post.module.css';
 
 const BlogPostTemplate: React.FC<
@@ -23,7 +24,7 @@ const BlogPostTemplate: React.FC<
           itemType="http://schema.org/Article"
         >
           <ArticleHeader
-            date={post?.frontmatter?.date || ''}
+            date={formatDisplayDate(post?.frontmatter?.date)}
             // @ts-expect-error gatsby-plugin-typegenの問題で配列を渡すときにエラーが出るため
             tags={post?.frontmatter?.tags || []}
             title={post?.frontmatter?.title || ''}
