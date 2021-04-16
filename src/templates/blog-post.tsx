@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import Layout from '@/templates/Layout';
+import SEO from '@/components/SEO';
 import ArticleHeader from '@/molecules/ArticleHeading';
 import * as styles from './blog-post.module.css';
 
@@ -11,6 +12,10 @@ const BlogPostTemplate: React.FC<
 
   return (
     <Layout>
+      <SEO
+        title={post?.frontmatter?.title || '記事'}
+        description={post?.excerpt}
+      />
       <div className={styles.wrapper}>
         <article
           className={styles.inner}
@@ -40,6 +45,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
+      excerpt(pruneLength: 160)
       html
       frontmatter {
         title
