@@ -1,23 +1,15 @@
 import React from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
+import logo from '@/images/header_logo.svg';
+import * as styles from './index.module.css';
 
 const Logo: React.FC = () => (
   <>
-    <StaticImage
-      src="../../images/header_logo.png"
+    <img
+      src={logo}
       alt="tamalog"
       width={154}
       height={35}
-      layout="fixed"
-      className="pc"
-    />
-    <StaticImage
-      src="../../images/header_logoSp.png"
-      alt="tamalog"
-      width={103}
-      height={24}
-      layout="fixed"
-      className="sp"
+      className={styles.image}
     />
   </>
 );
