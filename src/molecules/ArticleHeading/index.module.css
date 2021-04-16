@@ -1,0 +1,28 @@
+.information {
+  display: flex;
+  align-items: center;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -4px;
+  margin-left: 10px;
+}
+
+.tag {
+  margin-top: 4px;
+}
+
+.tag:not(:last-child) {
+  margin-right: 4px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 32px;
+}

@@ -241,8 +241,6 @@ declare namespace GatsbyTypes {
   type Site = Node & {
     readonly buildTime: Maybe<Scalars['Date']>;
     readonly siteMetadata: Maybe<SiteSiteMetadata>;
-    readonly port: Maybe<Scalars['Int']>;
-    readonly host: Maybe<Scalars['String']>;
     readonly polyfill: Maybe<Scalars['Boolean']>;
     readonly pathPrefix: Maybe<Scalars['String']>;
     readonly id: Scalars['ID'];
@@ -285,8 +283,6 @@ declare namespace GatsbyTypes {
 
   type SitePageContext = {
     readonly id: Maybe<Scalars['String']>;
-    readonly previousPostId: Maybe<Scalars['String']>;
-    readonly nextPostId: Maybe<Scalars['String']>;
   };
 
   type MarkdownHeading = {
@@ -836,8 +832,6 @@ declare namespace GatsbyTypes {
   type Query_siteArgs = {
     buildTime: Maybe<DateQueryOperatorInput>;
     siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-    port: Maybe<IntQueryOperatorInput>;
-    host: Maybe<StringQueryOperatorInput>;
     polyfill: Maybe<BooleanQueryOperatorInput>;
     pathPrefix: Maybe<StringQueryOperatorInput>;
     id: Maybe<StringQueryOperatorInput>;
@@ -1866,8 +1860,6 @@ declare namespace GatsbyTypes {
     | 'siteMetadata.url'
     | 'siteMetadata.social.twitter'
     | 'siteMetadata.twitter'
-    | 'port'
-    | 'host'
     | 'polyfill'
     | 'pathPrefix'
     | 'id'
@@ -1969,8 +1961,6 @@ declare namespace GatsbyTypes {
   type SiteFilterInput = {
     readonly buildTime: Maybe<DateQueryOperatorInput>;
     readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-    readonly port: Maybe<IntQueryOperatorInput>;
-    readonly host: Maybe<StringQueryOperatorInput>;
     readonly polyfill: Maybe<BooleanQueryOperatorInput>;
     readonly pathPrefix: Maybe<StringQueryOperatorInput>;
     readonly id: Maybe<StringQueryOperatorInput>;
@@ -1986,8 +1976,6 @@ declare namespace GatsbyTypes {
 
   type SitePageContextFilterInput = {
     readonly id: Maybe<StringQueryOperatorInput>;
-    readonly previousPostId: Maybe<StringQueryOperatorInput>;
-    readonly nextPostId: Maybe<StringQueryOperatorInput>;
   };
 
   type SitePluginFilterInput = {
@@ -2245,8 +2233,6 @@ declare namespace GatsbyTypes {
     | 'internal.type'
     | 'isCreatedByStatefulCreatePages'
     | 'context.id'
-    | 'context.previousPostId'
-    | 'context.nextPostId'
     | 'pluginCreator.id'
     | 'pluginCreator.parent.id'
     | 'pluginCreator.parent.parent.id'
@@ -3065,6 +3051,20 @@ declare namespace GatsbyTypes {
     };
   };
 
+  type BlogPostBySlugQueryVariables = Exact<{
+    id: Scalars['String'];
+  }>;
+
+  type BlogPostBySlugQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, 'id' | 'html'> & {
+        readonly frontmatter: Maybe<
+          Pick<Frontmatter, 'title' | 'date' | 'tags'>
+        >;
+      }
+    >;
+  };
+
   type GatsbyImageSharpFixedFragment = Pick<
     ImageSharpFixed,
     'base64' | 'width' | 'height' | 'src' | 'srcSet'
@@ -3147,34 +3147,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
-
-  type BlogPostBySlugQueryVariables = Exact<{
-    id: Scalars['String'];
-    previousPostId: Maybe<Scalars['String']>;
-    nextPostId: Maybe<Scalars['String']>;
-  }>;
-
-  type BlogPostBySlugQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'> & {
-        readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'date'>>;
-      }
-    >;
-    readonly previous: Maybe<{
-      readonly fields: Maybe<Pick<Fields, 'slug'>>;
-      readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
-    }>;
-    readonly next: Maybe<{
-      readonly fields: Maybe<Pick<Fields, 'slug'>>;
-      readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>>;
-    }>;
-  };
-
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
-  };
 }

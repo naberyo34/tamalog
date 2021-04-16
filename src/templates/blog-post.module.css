@@ -1,0 +1,63 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  max-width: 800px;
+}
+
+.section {
+  padding: 40px;
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* 記事内スタイル */
+
+.section h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.section h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.section li {
+  line-height: 1.5;
+  list-style: inside;
+}
+
+.section pre {
+  margin: 2em 0 0;
+}
+
+.section code {
+  margin: 0 0.5em;
+}
+
+.section p:not(:first-child),
+.section h2:not(:first-child),
+.section h3:not(:first-child),
+.section h4:not(:first-child),
+.section h5:not(:first-child),
+.section h6:not(:first-child),
+.section ol:not(:first-child),
+.section ul:not(:first-child),
+.section dl:not(:first-child) {
+  margin-top: 2em;
+}
+
+@media screen and (max-width: 767px) {
+  .inner {
+    max-width: auto;
+  }
+
+  .section {
+    padding: 0;
+    background: none;
+  }
+}
