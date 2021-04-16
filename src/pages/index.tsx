@@ -1,7 +1,9 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
+import SEO from '@/components/SEO';
 import Layout from '@/templates/Layout';
 import ArticleCard from '@/organisms/ArticleCard';
+import formatDisplayDate from '@/services/formatDisplayDate';
 import * as styles from './index.module.css';
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
@@ -19,6 +21,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
 
   return (
     <Layout>
+      <SEO title="TOP" />
       <nav>
         <ol className={styles.articles}>
           {posts.map((post) => {
@@ -27,8 +30,9 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
             return (
               <li key={title}>
                 <ArticleCard
-                  date={post.frontmatter?.date || ''}
-                  tag={post.frontmatter?.tag || ''}
+                  date={formatDisplayDate(post.frontmatter?.date)}
+                  // @ts-expect-error gatsby-plugin-typegenの問題で配列を渡すときにエラーが出るため
+                  tags={post.frontmatter?.tags || []}
                   title={title || ''}
                   excerpt={post.excerpt || ''}
                   to={post.fields?.slug || ''}
@@ -54,7 +58,7 @@ export const pageQuery = graphql`
         }
         frontmatter {
           date
-          tag
+          tags
           title
         }
       }

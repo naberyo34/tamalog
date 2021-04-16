@@ -91,6 +91,13 @@ exports.createSchemaCustomization = ({ actions }) => {
   createTypes(`
     type SiteSiteMetadata {
       title: String
+      description: String
+      url: String
+      social: Social
+    }
+
+    type Social {
+      twitter: String
     }
 
     type MarkdownRemark implements Node {
@@ -100,7 +107,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Frontmatter {
       title: String
-      tag: String
+      tags: [String]
       date: String
     }
 

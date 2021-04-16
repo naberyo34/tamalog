@@ -7,7 +7,7 @@ const Logo: React.FC = () => (
       src="../../images/header_logo.png"
       alt="tamalog"
       width={154}
-      height={36}
+      height={35}
       layout="fixed"
       className="pc"
     />

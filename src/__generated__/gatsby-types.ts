@@ -261,6 +261,9 @@ declare namespace GatsbyTypes {
   type SiteSiteMetadata = {
     readonly title: Maybe<Scalars['String']>;
     readonly description: Maybe<Scalars['String']>;
+    readonly url: Maybe<Scalars['String']>;
+    readonly social: Maybe<Social>;
+    readonly twitter: Maybe<Scalars['String']>;
   };
 
   type SitePage = Node & {
@@ -559,9 +562,13 @@ declare namespace GatsbyTypes {
     readonly originalName: Maybe<Scalars['String']>;
   };
 
+  type Social = {
+    readonly twitter: Maybe<Scalars['String']>;
+  };
+
   type Frontmatter = {
     readonly title: Maybe<Scalars['String']>;
-    readonly tag: Maybe<Scalars['String']>;
+    readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
     readonly date: Maybe<Scalars['String']>;
   };
 
@@ -1020,7 +1027,7 @@ declare namespace GatsbyTypes {
 
   type FrontmatterFilterInput = {
     readonly title: Maybe<StringQueryOperatorInput>;
-    readonly tag: Maybe<StringQueryOperatorInput>;
+    readonly tags: Maybe<StringQueryOperatorInput>;
     readonly date: Maybe<StringQueryOperatorInput>;
   };
 
@@ -1214,7 +1221,7 @@ declare namespace GatsbyTypes {
     | 'childrenMarkdownRemark'
     | 'childrenMarkdownRemark.id'
     | 'childrenMarkdownRemark.frontmatter.title'
-    | 'childrenMarkdownRemark.frontmatter.tag'
+    | 'childrenMarkdownRemark.frontmatter.tags'
     | 'childrenMarkdownRemark.frontmatter.date'
     | 'childrenMarkdownRemark.fields.slug'
     | 'childrenMarkdownRemark.excerpt'
@@ -1271,7 +1278,7 @@ declare namespace GatsbyTypes {
     | 'childrenMarkdownRemark.internal.type'
     | 'childMarkdownRemark.id'
     | 'childMarkdownRemark.frontmatter.title'
-    | 'childMarkdownRemark.frontmatter.tag'
+    | 'childMarkdownRemark.frontmatter.tags'
     | 'childMarkdownRemark.frontmatter.date'
     | 'childMarkdownRemark.fields.slug'
     | 'childMarkdownRemark.excerpt'
@@ -1818,6 +1825,13 @@ declare namespace GatsbyTypes {
   type SiteSiteMetadataFilterInput = {
     readonly title: Maybe<StringQueryOperatorInput>;
     readonly description: Maybe<StringQueryOperatorInput>;
+    readonly url: Maybe<StringQueryOperatorInput>;
+    readonly social: Maybe<SocialFilterInput>;
+    readonly twitter: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SocialFilterInput = {
+    readonly twitter: Maybe<StringQueryOperatorInput>;
   };
 
   type SiteConnection = {
@@ -1849,6 +1863,9 @@ declare namespace GatsbyTypes {
     | 'buildTime'
     | 'siteMetadata.title'
     | 'siteMetadata.description'
+    | 'siteMetadata.url'
+    | 'siteMetadata.social.twitter'
+    | 'siteMetadata.twitter'
     | 'port'
     | 'host'
     | 'polyfill'
@@ -2399,7 +2416,7 @@ declare namespace GatsbyTypes {
   type MarkdownRemarkFieldsEnum =
     | 'id'
     | 'frontmatter.title'
-    | 'frontmatter.tag'
+    | 'frontmatter.tags'
     | 'frontmatter.date'
     | 'fields.slug'
     | 'excerpt'
@@ -3021,6 +3038,18 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
   };
 
+  type SeoQueryVariables = Exact<{ [key: string]: never }>;
+
+  type SeoQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'url'> & {
+          readonly social: Maybe<Pick<Social, 'twitter'>>;
+        }
+      >;
+    }>;
+  };
+
   type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
 
   type BlogIndexQuery = {
@@ -3029,7 +3058,7 @@ declare namespace GatsbyTypes {
         Pick<MarkdownRemark, 'excerpt'> & {
           readonly fields: Maybe<Pick<Fields, 'slug'>>;
           readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tag' | 'title'>
+            Pick<Frontmatter, 'date' | 'tags' | 'title'>
           >;
         }
       >;

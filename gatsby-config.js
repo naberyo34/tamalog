@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `tamalog`,
+    description: `tama / Ryo Watanabe の備忘ブログ`,
+    url: `https://tamalog.netlify.app`,
+    twitter: `@momochitama`,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -88,7 +91,7 @@ module.exports = {
                     frontmatter {
                       title
                       date
-                      tag
+                      tags
                     }
                   }
                 }
@@ -108,7 +111,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/header_logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,

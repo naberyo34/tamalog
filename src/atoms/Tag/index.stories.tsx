@@ -5,4 +5,4 @@ export default {
   title: 'atoms/Tag',
 };
 
-export const Default: React.FC = () => <Index label="技術記事" />;
+export const Default: React.FC = () => <Index label="プログラミング" />;

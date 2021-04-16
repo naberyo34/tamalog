@@ -1,5 +1,6 @@
 .text {
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
+  color: #888;
 }

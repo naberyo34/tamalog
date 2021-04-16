@@ -9,7 +9,7 @@ import * as styles from './index.module.css';
 type Props = {
   img?: string;
   date: string;
-  tag: string;
+  tags: string[];
   title: string;
   excerpt: string;
   to: string;
@@ -18,22 +18,24 @@ type Props = {
 const ArticleCard: React.FC<Props> = ({
   img,
   date,
-  tag,
+  tags,
   title,
   excerpt,
   to,
 }) => (
   <div className={styles.wrapper}>
-    <Thumbnail src={img} />
-    <div className={styles.mt}>
-      <ArticleInformation date={date} tag={tag} />
+    <Link to={to}>
+      <Thumbnail src={img} />
+    </Link>
+    <div className={styles.mt10}>
+      <ArticleInformation date={date} tags={tags} />
     </div>
-    <div className={styles.mt}>
+    <div className={styles.mt4}>
       <Link to={to}>
         <Title label={title} />
       </Link>
     </div>
-    <div className={styles.mt}>
+    <div className={styles.mt10}>
       <Excerpt label={excerpt} />
     </div>
   </div>

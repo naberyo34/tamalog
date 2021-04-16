@@ -6,5 +6,5 @@ export default {
 };
 
 export const Default: React.FC = () => (
-  <Index date="2021.05.01" tag="技術記事" />
+  <Index date="2021.05.01" tag="プログラミング" />
 );

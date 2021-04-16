@@ -1,7 +1,7 @@
 ---
 title: "TypeScript + Gatsby + Storybook環境でimport aliasを利用する"
 date: "20210413"
-tag: "技術記事"
+tags: ["プログラミング", "TypeScript", "Gatsby", "Storybook"]
 ---
 
 モジュールを相対パスでimportするのが辛いので、エイリアスを設定した。

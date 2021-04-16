@@ -1,4 +1,18 @@
-.wrapper {
+.tags {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: -4px;
+}
+
+.tag {
+  margin-top: 4px;
+}
+
+.tag:not(:last-child) {
+  margin-right: 4px;
+}
+
+.mt {
+  margin-top: 4px;
+  text-align: right;
 }
