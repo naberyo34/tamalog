@@ -27,9 +27,15 @@
   font-weight: bold;
 }
 
+.section ol,
+.section ul,
+.section dl {
+  padding-left: 16px;
+}
+
 .section li {
   line-height: 1.5;
-  list-style: inside;
+  list-style: outside;
 }
 
 .section pre {

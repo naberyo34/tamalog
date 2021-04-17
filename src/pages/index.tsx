@@ -4,7 +4,8 @@ import SEO from '@/components/SEO';
 import Layout from '@/templates/Layout';
 import ArticleCard from '@/organisms/ArticleCard';
 import formatDisplayDate from '@/services/formatDisplayDate';
-import thumbProgramming from '@/images/thumbnail_programming.png';
+import getThumbnail from '@/services/getThumbnail';
+
 import * as styles from './index.module.css';
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
@@ -27,10 +28,8 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
         <ol className={styles.articles}>
           {posts.map((post) => {
             const title = post.frontmatter?.title || post.fields?.slug;
-            // todo: リファクタ
-            const thumbnail = post.frontmatter?.tags?.includes('プログラミング')
-              ? thumbProgramming
-              : '';
+            // @ts-expect-error gatsby-plugin-typegenの問題で配列を渡すときにエラーが出るため
+            const thumbnail = getThumbnail(post.frontmatter?.tags);
 
             return (
               <li key={title}>
