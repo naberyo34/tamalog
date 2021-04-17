@@ -1,6 +1,12 @@
 .articles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, 300px);
   gap: 40px 50px;
   list-style: none;
+}
+
+@media screen and (max-width: 767px) {
+  .articles {
+    grid-template-columns: 1fr;
+  }
 }
