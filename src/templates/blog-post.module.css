@@ -24,17 +24,11 @@
 .section h2 {
   font-size: 24px;
   font-weight: bold;
-  line-height: 1.5;
 }
 
 .section h3 {
   font-size: 20px;
   font-weight: bold;
-  line-height: 1.5;
-}
-
-.section p {
-  line-height: 1.7;
 }
 
 .section ol,
@@ -44,7 +38,7 @@
 }
 
 .section li {
-  line-height: 1.7;
+  line-height: 1.8;
   list-style: outside;
 }
 
@@ -70,7 +64,7 @@
 .section th,
 .section td {
   padding: 8px;
-  line-height: 1.7;
+  line-height: 1.8;
   border: 1px solid #888;
 }
 
