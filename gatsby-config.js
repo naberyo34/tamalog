@@ -92,6 +92,11 @@ module.exports = {
                       title
                       date
                       tags
+                      thumbnail {
+                        childImageSharp {
+                          gatsbyImageData(width: 300)
+                        }
+                      }
                     }
                   }
                 }

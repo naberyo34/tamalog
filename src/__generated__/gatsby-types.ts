@@ -568,6 +568,7 @@ declare namespace GatsbyTypes {
     readonly title: Maybe<Scalars['String']>;
     readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
     readonly date: Maybe<Scalars['String']>;
+    readonly thumbnail: Maybe<File>;
   };
 
   type Fields = {
@@ -1170,64 +1171,52 @@ declare namespace GatsbyTypes {
     readonly title: Maybe<StringQueryOperatorInput>;
     readonly tags: Maybe<StringQueryOperatorInput>;
     readonly date: Maybe<StringQueryOperatorInput>;
+    readonly thumbnail: Maybe<FileFilterInput>;
   };
 
-  type FieldsFilterInput = {
-    readonly slug: Maybe<StringQueryOperatorInput>;
-  };
-
-  type JSONQueryOperatorInput = {
-    readonly eq: Maybe<Scalars['JSON']>;
-    readonly ne: Maybe<Scalars['JSON']>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars['JSON']>>>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['JSON']>>>;
-    readonly regex: Maybe<Scalars['JSON']>;
-    readonly glob: Maybe<Scalars['JSON']>;
-  };
-
-  type MarkdownHeadingFilterListInput = {
-    readonly elemMatch: Maybe<MarkdownHeadingFilterInput>;
-  };
-
-  type MarkdownHeadingFilterInput = {
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly value: Maybe<StringQueryOperatorInput>;
-    readonly depth: Maybe<IntQueryOperatorInput>;
-  };
-
-  type MarkdownWordCountFilterInput = {
-    readonly paragraphs: Maybe<IntQueryOperatorInput>;
-    readonly sentences: Maybe<IntQueryOperatorInput>;
-    readonly words: Maybe<IntQueryOperatorInput>;
-  };
-
-  type NodeFilterInput = {
+  type FileFilterInput = {
+    readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
+    readonly absolutePath: Maybe<StringQueryOperatorInput>;
+    readonly relativePath: Maybe<StringQueryOperatorInput>;
+    readonly extension: Maybe<StringQueryOperatorInput>;
+    readonly size: Maybe<IntQueryOperatorInput>;
+    readonly prettySize: Maybe<StringQueryOperatorInput>;
+    readonly modifiedTime: Maybe<DateQueryOperatorInput>;
+    readonly accessTime: Maybe<DateQueryOperatorInput>;
+    readonly changeTime: Maybe<DateQueryOperatorInput>;
+    readonly birthTime: Maybe<DateQueryOperatorInput>;
+    readonly root: Maybe<StringQueryOperatorInput>;
+    readonly dir: Maybe<StringQueryOperatorInput>;
+    readonly base: Maybe<StringQueryOperatorInput>;
+    readonly ext: Maybe<StringQueryOperatorInput>;
+    readonly name: Maybe<StringQueryOperatorInput>;
+    readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
+    readonly dev: Maybe<IntQueryOperatorInput>;
+    readonly mode: Maybe<IntQueryOperatorInput>;
+    readonly nlink: Maybe<IntQueryOperatorInput>;
+    readonly uid: Maybe<IntQueryOperatorInput>;
+    readonly gid: Maybe<IntQueryOperatorInput>;
+    readonly rdev: Maybe<IntQueryOperatorInput>;
+    readonly ino: Maybe<FloatQueryOperatorInput>;
+    readonly atimeMs: Maybe<FloatQueryOperatorInput>;
+    readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
+    readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
+    readonly atime: Maybe<DateQueryOperatorInput>;
+    readonly mtime: Maybe<DateQueryOperatorInput>;
+    readonly ctime: Maybe<DateQueryOperatorInput>;
+    readonly birthtime: Maybe<DateQueryOperatorInput>;
+    readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
+    readonly blksize: Maybe<IntQueryOperatorInput>;
+    readonly blocks: Maybe<IntQueryOperatorInput>;
+    readonly publicURL: Maybe<StringQueryOperatorInput>;
+    readonly childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
+    readonly childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
+    readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
+    readonly childImageSharp: Maybe<ImageSharpFilterInput>;
     readonly id: Maybe<StringQueryOperatorInput>;
     readonly parent: Maybe<NodeFilterInput>;
     readonly children: Maybe<NodeFilterListInput>;
     readonly internal: Maybe<InternalFilterInput>;
-  };
-
-  type NodeFilterListInput = {
-    readonly elemMatch: Maybe<NodeFilterInput>;
-  };
-
-  type InternalFilterInput = {
-    readonly content: Maybe<StringQueryOperatorInput>;
-    readonly contentDigest: Maybe<StringQueryOperatorInput>;
-    readonly description: Maybe<StringQueryOperatorInput>;
-    readonly fieldOwners: Maybe<StringQueryOperatorInput>;
-    readonly ignoreType: Maybe<BooleanQueryOperatorInput>;
-    readonly mediaType: Maybe<StringQueryOperatorInput>;
-    readonly owner: Maybe<StringQueryOperatorInput>;
-    readonly type: Maybe<StringQueryOperatorInput>;
-  };
-
-  type BooleanQueryOperatorInput = {
-    readonly eq: Maybe<Scalars['Boolean']>;
-    readonly ne: Maybe<Scalars['Boolean']>;
-    readonly in: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
-    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
   };
 
   type ImageSharpFilterListInput = {
@@ -1274,6 +1263,15 @@ declare namespace GatsbyTypes {
     readonly presentationHeight: Maybe<IntQueryOperatorInput>;
   };
 
+  type JSONQueryOperatorInput = {
+    readonly eq: Maybe<Scalars['JSON']>;
+    readonly ne: Maybe<Scalars['JSON']>;
+    readonly in: Maybe<ReadonlyArray<Maybe<Scalars['JSON']>>>;
+    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['JSON']>>>;
+    readonly regex: Maybe<Scalars['JSON']>;
+    readonly glob: Maybe<Scalars['JSON']>;
+  };
+
   type ImageSharpOriginalFilterInput = {
     readonly width: Maybe<FloatQueryOperatorInput>;
     readonly height: Maybe<FloatQueryOperatorInput>;
@@ -1287,6 +1285,55 @@ declare namespace GatsbyTypes {
     readonly height: Maybe<IntQueryOperatorInput>;
     readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
     readonly originalName: Maybe<StringQueryOperatorInput>;
+  };
+
+  type NodeFilterInput = {
+    readonly id: Maybe<StringQueryOperatorInput>;
+    readonly parent: Maybe<NodeFilterInput>;
+    readonly children: Maybe<NodeFilterListInput>;
+    readonly internal: Maybe<InternalFilterInput>;
+  };
+
+  type NodeFilterListInput = {
+    readonly elemMatch: Maybe<NodeFilterInput>;
+  };
+
+  type InternalFilterInput = {
+    readonly content: Maybe<StringQueryOperatorInput>;
+    readonly contentDigest: Maybe<StringQueryOperatorInput>;
+    readonly description: Maybe<StringQueryOperatorInput>;
+    readonly fieldOwners: Maybe<StringQueryOperatorInput>;
+    readonly ignoreType: Maybe<BooleanQueryOperatorInput>;
+    readonly mediaType: Maybe<StringQueryOperatorInput>;
+    readonly owner: Maybe<StringQueryOperatorInput>;
+    readonly type: Maybe<StringQueryOperatorInput>;
+  };
+
+  type BooleanQueryOperatorInput = {
+    readonly eq: Maybe<Scalars['Boolean']>;
+    readonly ne: Maybe<Scalars['Boolean']>;
+    readonly in: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
+    readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Boolean']>>>;
+  };
+
+  type FieldsFilterInput = {
+    readonly slug: Maybe<StringQueryOperatorInput>;
+  };
+
+  type MarkdownHeadingFilterListInput = {
+    readonly elemMatch: Maybe<MarkdownHeadingFilterInput>;
+  };
+
+  type MarkdownHeadingFilterInput = {
+    readonly id: Maybe<StringQueryOperatorInput>;
+    readonly value: Maybe<StringQueryOperatorInput>;
+    readonly depth: Maybe<IntQueryOperatorInput>;
+  };
+
+  type MarkdownWordCountFilterInput = {
+    readonly paragraphs: Maybe<IntQueryOperatorInput>;
+    readonly sentences: Maybe<IntQueryOperatorInput>;
+    readonly words: Maybe<IntQueryOperatorInput>;
   };
 
   type FileConnection = {
@@ -1364,6 +1411,44 @@ declare namespace GatsbyTypes {
     | 'childrenMarkdownRemark.frontmatter.title'
     | 'childrenMarkdownRemark.frontmatter.tags'
     | 'childrenMarkdownRemark.frontmatter.date'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.sourceInstanceName'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.absolutePath'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.relativePath'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.extension'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.size'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.prettySize'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.modifiedTime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.accessTime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.changeTime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.birthTime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.root'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.dir'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.base'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.ext'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.name'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.relativeDirectory'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.dev'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.mode'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.nlink'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.uid'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.gid'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.rdev'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.ino'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.atimeMs'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.mtimeMs'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.ctimeMs'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.atime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.mtime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.ctime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.birthtime'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.birthtimeMs'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.blksize'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.blocks'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.publicURL'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.childrenMarkdownRemark'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.childrenImageSharp'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.id'
+    | 'childrenMarkdownRemark.frontmatter.thumbnail.children'
     | 'childrenMarkdownRemark.fields.slug'
     | 'childrenMarkdownRemark.excerpt'
     | 'childrenMarkdownRemark.rawMarkdownBody'
@@ -1421,6 +1506,44 @@ declare namespace GatsbyTypes {
     | 'childMarkdownRemark.frontmatter.title'
     | 'childMarkdownRemark.frontmatter.tags'
     | 'childMarkdownRemark.frontmatter.date'
+    | 'childMarkdownRemark.frontmatter.thumbnail.sourceInstanceName'
+    | 'childMarkdownRemark.frontmatter.thumbnail.absolutePath'
+    | 'childMarkdownRemark.frontmatter.thumbnail.relativePath'
+    | 'childMarkdownRemark.frontmatter.thumbnail.extension'
+    | 'childMarkdownRemark.frontmatter.thumbnail.size'
+    | 'childMarkdownRemark.frontmatter.thumbnail.prettySize'
+    | 'childMarkdownRemark.frontmatter.thumbnail.modifiedTime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.accessTime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.changeTime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.birthTime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.root'
+    | 'childMarkdownRemark.frontmatter.thumbnail.dir'
+    | 'childMarkdownRemark.frontmatter.thumbnail.base'
+    | 'childMarkdownRemark.frontmatter.thumbnail.ext'
+    | 'childMarkdownRemark.frontmatter.thumbnail.name'
+    | 'childMarkdownRemark.frontmatter.thumbnail.relativeDirectory'
+    | 'childMarkdownRemark.frontmatter.thumbnail.dev'
+    | 'childMarkdownRemark.frontmatter.thumbnail.mode'
+    | 'childMarkdownRemark.frontmatter.thumbnail.nlink'
+    | 'childMarkdownRemark.frontmatter.thumbnail.uid'
+    | 'childMarkdownRemark.frontmatter.thumbnail.gid'
+    | 'childMarkdownRemark.frontmatter.thumbnail.rdev'
+    | 'childMarkdownRemark.frontmatter.thumbnail.ino'
+    | 'childMarkdownRemark.frontmatter.thumbnail.atimeMs'
+    | 'childMarkdownRemark.frontmatter.thumbnail.mtimeMs'
+    | 'childMarkdownRemark.frontmatter.thumbnail.ctimeMs'
+    | 'childMarkdownRemark.frontmatter.thumbnail.atime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.mtime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.ctime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.birthtime'
+    | 'childMarkdownRemark.frontmatter.thumbnail.birthtimeMs'
+    | 'childMarkdownRemark.frontmatter.thumbnail.blksize'
+    | 'childMarkdownRemark.frontmatter.thumbnail.blocks'
+    | 'childMarkdownRemark.frontmatter.thumbnail.publicURL'
+    | 'childMarkdownRemark.frontmatter.thumbnail.childrenMarkdownRemark'
+    | 'childMarkdownRemark.frontmatter.thumbnail.childrenImageSharp'
+    | 'childMarkdownRemark.frontmatter.thumbnail.id'
+    | 'childMarkdownRemark.frontmatter.thumbnail.children'
     | 'childMarkdownRemark.fields.slug'
     | 'childMarkdownRemark.excerpt'
     | 'childMarkdownRemark.rawMarkdownBody'
@@ -1709,51 +1832,6 @@ declare namespace GatsbyTypes {
     readonly pageInfo: PageInfo;
     readonly field: Scalars['String'];
     readonly fieldValue: Maybe<Scalars['String']>;
-  };
-
-  type FileFilterInput = {
-    readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
-    readonly absolutePath: Maybe<StringQueryOperatorInput>;
-    readonly relativePath: Maybe<StringQueryOperatorInput>;
-    readonly extension: Maybe<StringQueryOperatorInput>;
-    readonly size: Maybe<IntQueryOperatorInput>;
-    readonly prettySize: Maybe<StringQueryOperatorInput>;
-    readonly modifiedTime: Maybe<DateQueryOperatorInput>;
-    readonly accessTime: Maybe<DateQueryOperatorInput>;
-    readonly changeTime: Maybe<DateQueryOperatorInput>;
-    readonly birthTime: Maybe<DateQueryOperatorInput>;
-    readonly root: Maybe<StringQueryOperatorInput>;
-    readonly dir: Maybe<StringQueryOperatorInput>;
-    readonly base: Maybe<StringQueryOperatorInput>;
-    readonly ext: Maybe<StringQueryOperatorInput>;
-    readonly name: Maybe<StringQueryOperatorInput>;
-    readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
-    readonly dev: Maybe<IntQueryOperatorInput>;
-    readonly mode: Maybe<IntQueryOperatorInput>;
-    readonly nlink: Maybe<IntQueryOperatorInput>;
-    readonly uid: Maybe<IntQueryOperatorInput>;
-    readonly gid: Maybe<IntQueryOperatorInput>;
-    readonly rdev: Maybe<IntQueryOperatorInput>;
-    readonly ino: Maybe<FloatQueryOperatorInput>;
-    readonly atimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly atime: Maybe<DateQueryOperatorInput>;
-    readonly mtime: Maybe<DateQueryOperatorInput>;
-    readonly ctime: Maybe<DateQueryOperatorInput>;
-    readonly birthtime: Maybe<DateQueryOperatorInput>;
-    readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
-    readonly blksize: Maybe<IntQueryOperatorInput>;
-    readonly blocks: Maybe<IntQueryOperatorInput>;
-    readonly publicURL: Maybe<StringQueryOperatorInput>;
-    readonly childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
-    readonly childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
-    readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
-    readonly childImageSharp: Maybe<ImageSharpFilterInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
-    readonly parent: Maybe<NodeFilterInput>;
-    readonly children: Maybe<NodeFilterListInput>;
-    readonly internal: Maybe<InternalFilterInput>;
   };
 
   type FileSortInput = {
@@ -2555,6 +2633,84 @@ declare namespace GatsbyTypes {
     | 'frontmatter.title'
     | 'frontmatter.tags'
     | 'frontmatter.date'
+    | 'frontmatter.thumbnail.sourceInstanceName'
+    | 'frontmatter.thumbnail.absolutePath'
+    | 'frontmatter.thumbnail.relativePath'
+    | 'frontmatter.thumbnail.extension'
+    | 'frontmatter.thumbnail.size'
+    | 'frontmatter.thumbnail.prettySize'
+    | 'frontmatter.thumbnail.modifiedTime'
+    | 'frontmatter.thumbnail.accessTime'
+    | 'frontmatter.thumbnail.changeTime'
+    | 'frontmatter.thumbnail.birthTime'
+    | 'frontmatter.thumbnail.root'
+    | 'frontmatter.thumbnail.dir'
+    | 'frontmatter.thumbnail.base'
+    | 'frontmatter.thumbnail.ext'
+    | 'frontmatter.thumbnail.name'
+    | 'frontmatter.thumbnail.relativeDirectory'
+    | 'frontmatter.thumbnail.dev'
+    | 'frontmatter.thumbnail.mode'
+    | 'frontmatter.thumbnail.nlink'
+    | 'frontmatter.thumbnail.uid'
+    | 'frontmatter.thumbnail.gid'
+    | 'frontmatter.thumbnail.rdev'
+    | 'frontmatter.thumbnail.ino'
+    | 'frontmatter.thumbnail.atimeMs'
+    | 'frontmatter.thumbnail.mtimeMs'
+    | 'frontmatter.thumbnail.ctimeMs'
+    | 'frontmatter.thumbnail.atime'
+    | 'frontmatter.thumbnail.mtime'
+    | 'frontmatter.thumbnail.ctime'
+    | 'frontmatter.thumbnail.birthtime'
+    | 'frontmatter.thumbnail.birthtimeMs'
+    | 'frontmatter.thumbnail.blksize'
+    | 'frontmatter.thumbnail.blocks'
+    | 'frontmatter.thumbnail.publicURL'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.id'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.excerpt'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.rawMarkdownBody'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.fileAbsolutePath'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.html'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.htmlAst'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.excerptAst'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.headings'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.timeToRead'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.tableOfContents'
+    | 'frontmatter.thumbnail.childrenMarkdownRemark.children'
+    | 'frontmatter.thumbnail.childMarkdownRemark.id'
+    | 'frontmatter.thumbnail.childMarkdownRemark.excerpt'
+    | 'frontmatter.thumbnail.childMarkdownRemark.rawMarkdownBody'
+    | 'frontmatter.thumbnail.childMarkdownRemark.fileAbsolutePath'
+    | 'frontmatter.thumbnail.childMarkdownRemark.html'
+    | 'frontmatter.thumbnail.childMarkdownRemark.htmlAst'
+    | 'frontmatter.thumbnail.childMarkdownRemark.excerptAst'
+    | 'frontmatter.thumbnail.childMarkdownRemark.headings'
+    | 'frontmatter.thumbnail.childMarkdownRemark.timeToRead'
+    | 'frontmatter.thumbnail.childMarkdownRemark.tableOfContents'
+    | 'frontmatter.thumbnail.childMarkdownRemark.children'
+    | 'frontmatter.thumbnail.childrenImageSharp'
+    | 'frontmatter.thumbnail.childrenImageSharp.gatsbyImageData'
+    | 'frontmatter.thumbnail.childrenImageSharp.id'
+    | 'frontmatter.thumbnail.childrenImageSharp.children'
+    | 'frontmatter.thumbnail.childImageSharp.gatsbyImageData'
+    | 'frontmatter.thumbnail.childImageSharp.id'
+    | 'frontmatter.thumbnail.childImageSharp.children'
+    | 'frontmatter.thumbnail.id'
+    | 'frontmatter.thumbnail.parent.id'
+    | 'frontmatter.thumbnail.parent.children'
+    | 'frontmatter.thumbnail.children'
+    | 'frontmatter.thumbnail.children.id'
+    | 'frontmatter.thumbnail.children.children'
+    | 'frontmatter.thumbnail.internal.content'
+    | 'frontmatter.thumbnail.internal.contentDigest'
+    | 'frontmatter.thumbnail.internal.description'
+    | 'frontmatter.thumbnail.internal.fieldOwners'
+    | 'frontmatter.thumbnail.internal.ignoreType'
+    | 'frontmatter.thumbnail.internal.mediaType'
+    | 'frontmatter.thumbnail.internal.owner'
+    | 'frontmatter.thumbnail.internal.type'
     | 'fields.slug'
     | 'excerpt'
     | 'rawMarkdownBody'
@@ -3393,7 +3549,13 @@ declare namespace GatsbyTypes {
         Pick<MarkdownRemark, 'excerpt'> & {
           readonly fields: Maybe<Pick<Fields, 'slug'>>;
           readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'>
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
           >;
         }
       >;
@@ -3408,7 +3570,13 @@ declare namespace GatsbyTypes {
     readonly markdownRemark: Maybe<
       Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'> & {
         readonly frontmatter: Maybe<
-          Pick<Frontmatter, 'title' | 'date' | 'tags'>
+          Pick<Frontmatter, 'title' | 'date' | 'tags'> & {
+            readonly thumbnail: Maybe<{
+              readonly childImageSharp: Maybe<
+                Pick<ImageSharp, 'gatsbyImageData'>
+              >;
+            }>;
+          }
         >;
       }
     >;

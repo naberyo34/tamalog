@@ -1,4 +1,6 @@
 declare const styles: {
-  readonly articles: string;
+  readonly latestArticles: string;
+  readonly previousArticlesWrapper: string;
+  readonly previousArticles: string;
 };
 export = styles;

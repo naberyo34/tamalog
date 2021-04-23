@@ -1,7 +1,9 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
+import { getImage } from 'gatsby-plugin-image';
 import SEO from '@/components/SEO';
 import Layout from '@/templates/Layout';
+import BlogIndexHeading from '@/atoms/BlogIndexHeading';
 import ArticleCard from '@/organisms/ArticleCard';
 import formatDisplayDate from '@/services/formatDisplayDate';
 import getThumbnail from '@/services/getThumbnail';
@@ -12,6 +14,8 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
 }) => {
   const posts = data.allMarkdownRemark.nodes;
+  const latestPosts = posts.slice(0, 6);
+  const previousPosts = posts.slice(6);
 
   if (posts.length === 0) {
     return (
@@ -25,19 +29,23 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout>
       <SEO title="TOP" />
       <nav>
-        <ol className={styles.articles}>
-          {posts.map((post) => {
+        <BlogIndexHeading label="最新記事" />
+        <ol className={styles.latestArticles}>
+          {latestPosts.map((post) => {
             const title = post.frontmatter?.title || post.fields?.slug;
-            // @ts-expect-error gatsby-plugin-typegenの問題で配列を渡すときにエラーが出るため
-            const thumbnail = getThumbnail(post.frontmatter?.tags);
+            const postThumbnail =
+              post.frontmatter?.thumbnail &&
+              // @ts-expect-error (typegen都合?) thumbnailの型が合わない
+              getImage(post.frontmatter.thumbnail);
+            const thumbnail =
+              postThumbnail || getThumbnail(post.frontmatter?.tags);
 
             return (
               <li key={title}>
                 <ArticleCard
                   img={thumbnail}
                   date={formatDisplayDate(post.frontmatter?.date)}
-                  // @ts-expect-error gatsby-plugin-typegenの問題で配列を渡すときにエラーが出るため
-                  tags={post.frontmatter?.tags || []}
+                  tags={post.frontmatter?.tags}
                   title={title || ''}
                   excerpt={post.excerpt || ''}
                   to={post.fields?.slug || ''}
@@ -46,6 +54,28 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
             );
           })}
         </ol>
+        {previousPosts.length !== 0 && (
+          <div className={styles.previousArticlesWrapper}>
+            <BlogIndexHeading label="過去記事" />
+            <ol className={styles.previousArticles}>
+              {previousPosts.map((post) => {
+                const title = post.frontmatter?.title || post.fields?.slug;
+
+                return (
+                  <li key={title}>
+                    <ArticleCard
+                      date={formatDisplayDate(post.frontmatter?.date)}
+                      tags={post.frontmatter?.tags}
+                      title={title || ''}
+                      excerpt={post.excerpt || ''}
+                      to={post.fields?.slug || ''}
+                    />
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        )}
       </nav>
     </Layout>
   );
@@ -65,6 +95,11 @@ export const pageQuery = graphql`
           date
           tags
           title
+          thumbnail {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
         }
       }
     }

@@ -6,7 +6,7 @@ import thumbIllust from '@/images/thumbnail_illust.png';
  * @param tags 記事のタグ配列
  * @returns 画像パス
  */
-const getThumbnail = (tags?: string[]): string => {
+const getThumbnail = (tags?: readonly GatsbyTypes.Maybe<string>[]): string => {
   if (!tags || tags.length === 0) return '';
   if (tags.includes('プログラミング')) return thumbProgramming;
   if (tags.includes('イラスト')) return thumbIllust;
