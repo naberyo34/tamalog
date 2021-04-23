@@ -18,6 +18,14 @@ p {
   line-height: 1.8;
 }
 
+a {
+  color: #4b7a7c;
+}
+
+a:visited {
+  color: #63676b;
+}
+
 .sp {
   display: none;
 }

@@ -3529,18 +3529,6 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
   };
 
-  type SeoQueryVariables = Exact<{ [key: string]: never }>;
-
-  type SeoQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description' | 'url'> & {
-          readonly social: Maybe<Pick<Social, 'twitter'>>;
-        }
-      >;
-    }>;
-  };
-
   type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
 
   type BlogIndexQuery = {
@@ -3562,6 +3550,18 @@ declare namespace GatsbyTypes {
     };
   };
 
+  type SeoQueryVariables = Exact<{ [key: string]: never }>;
+
+  type SeoQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'url'> & {
+          readonly social: Maybe<Pick<Social, 'twitter'>>;
+        }
+      >;
+    }>;
+  };
+
   type BlogPostBySlugQueryVariables = Exact<{
     id: Scalars['String'];
   }>;
@@ -3580,14 +3580,6 @@ declare namespace GatsbyTypes {
         >;
       }
     >;
-  };
-
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
   };
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -3672,4 +3664,12 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
+
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+  type PagesQueryQuery = {
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
+    };
+  };
 }

@@ -38,6 +38,9 @@ module.exports = {
               wrapperStyle: `margin-top: 2em`,
             },
           },
+          {
+            resolve: `gatsby-remark-external-links`,
+          },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
@@ -46,6 +49,8 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    // note: mdファイル内でのinternal linkをSPAルーティングに変換してくれる
+    `gatsby-plugin-catch-links`,
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
