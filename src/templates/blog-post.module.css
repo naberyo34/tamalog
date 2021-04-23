@@ -20,11 +20,17 @@
 .section h2 {
   font-size: 24px;
   font-weight: bold;
+  line-height: 1.5;
 }
 
 .section h3 {
   font-size: 20px;
   font-weight: bold;
+  line-height: 1.5;
+}
+
+.section p {
+  line-height: 1.7;
 }
 
 .section ol,
@@ -34,7 +40,7 @@
 }
 
 .section li {
-  line-height: 1.5;
+  line-height: 1.7;
   list-style: outside;
 }
 
@@ -44,6 +50,24 @@
 
 .section code {
   margin: 0 0.5em;
+}
+
+.section blockquote {
+  padding: 16px;
+  margin-top: 2em;
+  color: #888;
+  border-left: 4px solid #ddd;
+}
+
+.section table {
+  margin-top: 2em;
+}
+
+.section th,
+.section td {
+  padding: 8px;
+  line-height: 1.7;
+  border: 1px solid #888;
 }
 
 .section p:not(:first-child),
@@ -62,5 +86,9 @@
   .section {
     padding: 0;
     background: none;
+  }
+
+  .section blockquote {
+    background: #fff;
   }
 }
