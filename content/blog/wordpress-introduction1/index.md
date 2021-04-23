@@ -1,5 +1,5 @@
 ---
-title: "「FEが」WordPressを攻略する #1 ── 自作テーマ、投稿タイプの作成"
+title: "FEがWordPressを攻略する #1 ── 自作テーマ、投稿タイプの作成"
 date: "20210422"
 tags: ["プログラミング", "WordPress"]
 thumbnail: "thumbnail.png"

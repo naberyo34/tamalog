@@ -1,5 +1,5 @@
 ---
-title: "「FEが」WordPressを攻略する #2 ── アーカイブ、本文ページの作成"
+title: "FEがWordPressを攻略する #2 ── アーカイブ、本文ページの作成"
 date: "20210423"
 tags: ["プログラミング", "WordPress"]
 thumbnail: "thumbnail.png"
