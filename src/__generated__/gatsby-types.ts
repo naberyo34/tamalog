@@ -3529,27 +3529,6 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
   };
 
-  type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
-
-  type BlogIndexQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
-    };
-  };
-
   type SeoQueryVariables = Exact<{ [key: string]: never }>;
 
   type SeoQuery = {
@@ -3580,6 +3559,27 @@ declare namespace GatsbyTypes {
         >;
       }
     >;
+  };
+
+  type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
+
+  type BlogIndexQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
   };
 
   type GatsbyImageSharpFixedFragment = Pick<

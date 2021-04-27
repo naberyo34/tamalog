@@ -29,7 +29,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout>
       <SEO title="TOP" />
       <nav>
-        <BlogIndexHeading label="最新記事" />
+        <BlogIndexHeading label="新着記事" />
         <ol className={styles.latestArticles}>
           {latestPosts.map((post) => {
             const title = post.frontmatter?.title || post.fields?.slug;

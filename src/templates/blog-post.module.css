@@ -50,6 +50,10 @@
   margin: 0 0.5em;
 }
 
+.section pre > code {
+  margin: 0;
+}
+
 .section blockquote {
   padding: 16px;
   margin-top: 2em;
