@@ -4,16 +4,10 @@
   height: 120px;
   background: #ddd;
   border-radius: 8px;
-  transition: transform 0.2s;
 }
 
 .image {
   object-fit: cover;
-}
-
-.image:hover,
-.fallback:hover {
-  transform: scale(1.04);
 }
 
 @media screen and (max-width: 767px) {
