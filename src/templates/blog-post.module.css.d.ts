@@ -3,5 +3,8 @@ declare const styles: {
   readonly inner: string;
   readonly thumbnail: string;
   readonly section: string;
+  readonly relatedPostsWrapper: string;
+  readonly relatedPostsInner: string;
+  readonly relatedPost: string;
 };
 export = styles;
