@@ -1,5 +1,5 @@
 ---
-title: "FEがWordPressを攻略する #3 ── 固定ページの作成、投稿機能の整理"
+title: "FEがWordPressを攻略する #3 ── トップページでの投稿アーカイブ、お問い合わせフォーム、スタイリング"
 date: "20210428"
 tags: ["プログラミング", "WordPress"]
 thumbnail: "thumbnail.png"
