@@ -12,9 +12,10 @@ type Props = {
   title: string;
   description?: string;
   meta?: Meta[];
+  canonicalUrl?: string;
 };
 
-const SEO: React.FC<Props> = ({ title, description, meta }) => {
+const SEO: React.FC<Props> = ({ title, description, meta, canonicalUrl }) => {
   const metaArray = meta || [];
   const { site } = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
@@ -38,6 +39,7 @@ const SEO: React.FC<Props> = ({ title, description, meta }) => {
   const defaultImage = site?.siteMetadata?.url
     ? `${site.siteMetadata.url}${ogImage}`
     : '';
+  const dynamicImage = canonicalUrl ? `${canonicalUrl}og_dynamic.png` : '';
 
   return (
     <Helmet
@@ -68,12 +70,11 @@ const SEO: React.FC<Props> = ({ title, description, meta }) => {
         },
         {
           property: `og:image`,
-          // todo: 変更可能にする
-          content: defaultImage,
+          content: dynamicImage || defaultImage,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
