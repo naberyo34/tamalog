@@ -1,6 +1,6 @@
 ---
 title: "ブログに関連記事表示機能をつけた"
-date: "20210429"
+date: "20210506"
 tags: ["プログラミング", "Gatsby"]
 ---
 
@@ -12,96 +12,108 @@ tags: ["プログラミング", "Gatsby"]
 
 というとても簡素なものだ。
 
-## GraphQLクエリの追加
+## 関連記事のコンポーネントでStaticQueryを使う
 
-投稿記事を表示するテンプレートファイルにはもともと表示する記事のみを取得するクエリを書いていたのだが、そこに「全件取得」のクエリを追加した。
+GatsbyにおけるGraphQLクエリには、トップページや記事ページなどの**ページ単位**で利用できる`Page Query`と、コンポーネント単位で利用できる`Static Query`がある。
+
+タグの重複する記事を見つけるために、まずは「関連記事」のコンポーネント内で記事の全件取得を行う。
 
 ```typescript
-export const pageQuery = graphql`
-  query BlogPostAndRelatedPosts($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date
-        tags
-        thumbnail {
-          childImageSharp {
-            gatsbyImageData
+const RelatedPosts: React.FC<Props> = ({ title, tags }) => {
+  const allPosts: GatsbyTypes.RelatedPostsQuery = useStaticQuery<GatsbyTypes.RelatedPostsQuery>(graphql`
+    query RelatedPosts {
+      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        nodes {
+          excerpt(pruneLength: 50, truncate: true)
+          fields {
+            slug
           }
-        }
-      }
-    }
-    // 追加分
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt(pruneLength: 50, truncate: true)
-        fields {
-          slug
-        }
-        frontmatter {
-          date
-          tags
-          title
-          thumbnail {
-            childImageSharp {
-              gatsbyImageData
+          frontmatter {
+            date
+            tags
+            title
+            thumbnail {
+              childImageSharp {
+                gatsbyImageData
+              }
             }
           }
         }
       }
     }
-  }
-`;
+  `);
+  // ...
 ```
-
-`markdownRemark`は実際に表示する記事のデータ、`allMarkdownRemark`のほうはとりあえず全件のデータを取ってきている。ちょっと大仰な気がしなくもないが、動作上の影響を受けるのはビルドのときくらいなのでいったんこれで進めることにした。
 
 ## 絞り込みの処理をReactコンポーネント内に書く
 
-「GraphQLクエリの時点で絞り込めないのか？」とは思っているのだが、
-
-- `markdownRemark`内に値のある「実際に表示する記事」のタグを使って、さらに関連記事を取得してくるためのクエリを走らせる
-
-という二段階の処理はできないような気がする（自信なし）。今回はいったんコンポーネント側でフィルタリング処理を書くことにした。
+「GraphQLクエリの時点で絞り込めないのか？」と思ったのだが、残念ながら`useStaticQuery`はその名のとおりクエリの値を動的に変えることができない。今回はpropsで受け取った`title`と`tag`を使い、コンポーネント内で絞り込みの処理を行うことにした。
 
 ```typescript
-const BlogPostTemplate: React.FC<
-  PageProps<GatsbyTypes.BlogPostAndRelatedPostsQuery>
-> = ({ data }) => {
-  const post = data.markdownRemark;
-  const allPosts = data.allMarkdownRemark;
-  const relatedPosts = allPosts.nodes.filter((target) => {
-    const targetTitle = target.frontmatter?.title;
-    const postTitle = post?.frontmatter?.title;
-    const targetTags = target.frontmatter?.tags;
-    const postTags = post?.frontmatter?.tags;
+// ...
+const relatedPosts = allPosts.allMarkdownRemark.nodes.filter((target) => {
+  const targetTitle = target.frontmatter?.title;
+  const targetTags = target.frontmatter?.tags;
 
-    // 表示中の記事と同一の記事は省く
-    if (targetTitle === postTitle) return false;
+  // 表示中の記事と同一の記事は省く
+  if (targetTitle === title) return false;
 
-    if (targetTags && postTags) {
-      let matchCounter = 0;
+  if (targetTags) {
+    let matchCounter = 0;
 
-      // 表示中の記事と2つ以上同じタグを持っている要素でフィルタリングする
-      targetTags.forEach((targetTag) => {
-        if (postTags.includes(targetTag)) {
-          matchCounter += 1;
-        }
-      });
+    // 表示中の記事と2つ以上同じタグを持っている要素でフィルタリングする
+    targetTags.forEach((targetTag) => {
+      if (tags && tags.includes(targetTag)) {
+        matchCounter += 1;
+      }
+    });
 
-      if (matchCounter > 1) return true;
-    }
+    if (matchCounter > 1) return true;
+  }
 
-    return false;
-  });
-
-  // 後略
+  return false;
+});
+// ...
 ```
 
-これで関連記事の配列が取得できるので、あとは`relatedPosts`をJSXで出力するだけだ。
+これで関連記事の配列が取得できた。あとは`relatedPosts`を`map`で展開し、関連記事のカードを横並びに配置している。
+
+```jsx
+return (
+  <>
+    {relatedPosts.length !== 0 && (
+      <nav className={styles.wrapper}>
+        <BlogIndexHeading label="関連記事" />
+        <ol className={styles.inner}>
+          {relatedPosts.map((relatedPost) => {
+            const relatedPostTitle =
+              relatedPost.frontmatter?.title || relatedPost.fields?.slug;
+            const relatedPostThumbnail =
+              relatedPost.frontmatter?.thumbnail &&
+              getImage(relatedPost.frontmatter.thumbnail);
+            const relatedThumbnail =
+              relatedPostThumbnail ||
+              getThumbnail(relatedPost.frontmatter?.tags);
+
+            return (
+              <li key={relatedPostTitle} className={styles.post}>
+                <ArticleCard
+                  img={relatedThumbnail}
+                  date={formatDisplayDate(relatedPost.frontmatter?.date)}
+                  tags={relatedPost.frontmatter?.tags}
+                  title={relatedPostTitle || ''}
+                  excerpt={relatedPost.excerpt || ''}
+                  to={relatedPost.fields?.slug || ''}
+                />
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+    )}
+  </>
+);
+```
 
 ## おわりに
 
