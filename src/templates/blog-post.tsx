@@ -6,14 +6,16 @@ import SEO from '@/components/SEO';
 import BlogIndexHeading from '@/atoms/BlogIndexHeading';
 import ArticleHeading from '@/molecules/ArticleHeading';
 import ArticleCard from '@/organisms/ArticleCard';
+import ShareButtons from '@/organisms/ShareButtons';
 import formatDisplayDate from '@/services/formatDisplayDate';
 import getThumbnail from '@/services/getThumbnail';
-
 import * as styles from './blog-post.module.css';
 
 const BlogPostTemplate: React.FC<
   PageProps<GatsbyTypes.BlogPostAndRelatedPostsQuery>
-> = ({ data }) => {
+> = ({ location, data }) => {
+  const siteUrl = data.site?.siteMetadata?.url;
+  const canonicalUrl = siteUrl ? `${siteUrl}${location.pathname}` : '';
   const post = data.markdownRemark;
   const allPosts = data.allMarkdownRemark;
   const postThumbnail =
@@ -74,6 +76,9 @@ const BlogPostTemplate: React.FC<
             itemProp="articleBody"
             className={styles.section}
           />
+          <div className={styles.shareButtonsWrapper}>
+            <ShareButtons url={canonicalUrl} />
+          </div>
         </article>
       </div>
       {relatedPosts.length !== 0 && (
@@ -115,6 +120,11 @@ export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostAndRelatedPosts($id: String!) {
+    site {
+      siteMetadata {
+        url
+      }
+    }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)

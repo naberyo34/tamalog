@@ -3200,9 +3200,56 @@ declare namespace GatsbyTypes {
     }>;
   };
 
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+  type PagesQueryQuery = {
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
+    };
+  };
+
   type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
 
   type BlogIndexQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
+
+  type BlogPostAndRelatedPostsQueryVariables = Exact<{
+    id: Scalars['String'];
+  }>;
+
+  type BlogPostAndRelatedPostsQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'url'>>;
+    }>;
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'> & {
+        readonly frontmatter: Maybe<
+          Pick<Frontmatter, 'title' | 'date' | 'tags'> & {
+            readonly thumbnail: Maybe<{
+              readonly childImageSharp: Maybe<
+                Pick<ImageSharp, 'gatsbyImageData'>
+              >;
+            }>;
+          }
+        >;
+      }
+    >;
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, 'excerpt'> & {
@@ -3303,48 +3350,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
-
-  type BlogPostAndRelatedPostsQueryVariables = Exact<{
-    id: Scalars['String'];
-  }>;
-
-  type BlogPostAndRelatedPostsQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'> & {
-        readonly frontmatter: Maybe<
-          Pick<Frontmatter, 'title' | 'date' | 'tags'> & {
-            readonly thumbnail: Maybe<{
-              readonly childImageSharp: Maybe<
-                Pick<ImageSharp, 'gatsbyImageData'>
-              >;
-            }>;
-          }
-        >;
-      }
-    >;
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
-    };
-  };
-
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
-  };
 }
