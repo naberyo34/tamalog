@@ -612,6 +612,15 @@ declare namespace GatsbyTypes {
     >;
     readonly path: Maybe<Scalars['String']>;
     readonly name: Maybe<Scalars['String']>;
+    readonly output: Maybe<SitePluginPluginOptionsOutput>;
+    readonly image: Maybe<SitePluginPluginOptionsImage>;
+    readonly style: Maybe<SitePluginPluginOptionsStyle>;
+    readonly meta: Maybe<SitePluginPluginOptionsMeta>;
+    readonly fontFile: Maybe<
+      ReadonlyArray<Maybe<SitePluginPluginOptionsFontFile>>
+    >;
+    readonly iconFile: Maybe<Scalars['String']>;
+    readonly timeout: Maybe<Scalars['Int']>;
     readonly maxWidth: Maybe<Scalars['Int']>;
     readonly linkImagesToOriginal: Maybe<Scalars['Boolean']>;
     readonly showCaptions: Maybe<Scalars['Boolean']>;
@@ -651,8 +660,8 @@ declare namespace GatsbyTypes {
 
   type SitePluginPluginOptionsPlugins = {
     readonly resolve: Maybe<Scalars['String']>;
-    readonly id: Maybe<Scalars['String']>;
     readonly name: Maybe<Scalars['String']>;
+    readonly id: Maybe<Scalars['String']>;
     readonly version: Maybe<Scalars['String']>;
     readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptions>;
     readonly nodeAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
@@ -661,6 +670,15 @@ declare namespace GatsbyTypes {
   };
 
   type SitePluginPluginOptionsPluginsPluginOptions = {
+    readonly output: Maybe<SitePluginPluginOptionsPluginsPluginOptionsOutput>;
+    readonly image: Maybe<SitePluginPluginOptionsPluginsPluginOptionsImage>;
+    readonly style: Maybe<SitePluginPluginOptionsPluginsPluginOptionsStyle>;
+    readonly meta: Maybe<SitePluginPluginOptionsPluginsPluginOptionsMeta>;
+    readonly fontFile: Maybe<
+      ReadonlyArray<Maybe<SitePluginPluginOptionsPluginsPluginOptionsFontFile>>
+    >;
+    readonly iconFile: Maybe<Scalars['String']>;
+    readonly timeout: Maybe<Scalars['Int']>;
     readonly maxWidth: Maybe<Scalars['Int']>;
     readonly linkImagesToOriginal: Maybe<Scalars['Boolean']>;
     readonly showCaptions: Maybe<Scalars['Boolean']>;
@@ -674,6 +692,96 @@ declare namespace GatsbyTypes {
     readonly disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
     readonly disableBgImage: Maybe<Scalars['Boolean']>;
     readonly wrapperStyle: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsOutput = {
+    readonly directory: Maybe<Scalars['String']>;
+    readonly fileName: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsImage = {
+    readonly width: Maybe<Scalars['Int']>;
+    readonly height: Maybe<Scalars['Int']>;
+    readonly backgroundImage: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsStyle = {
+    readonly title: Maybe<SitePluginPluginOptionsPluginsPluginOptionsStyleTitle>;
+    readonly author: Maybe<SitePluginPluginOptionsPluginsPluginOptionsStyleAuthor>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsStyleTitle = {
+    readonly fontFamily: Maybe<Scalars['String']>;
+    readonly fontColor: Maybe<Scalars['String']>;
+    readonly fontWeight: Maybe<Scalars['String']>;
+    readonly fontSize: Maybe<Scalars['Int']>;
+    readonly paddingTop: Maybe<Scalars['Int']>;
+    readonly paddingBottom: Maybe<Scalars['Int']>;
+    readonly paddingLeft: Maybe<Scalars['Int']>;
+    readonly paddingRight: Maybe<Scalars['Int']>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsStyleAuthor = {
+    readonly fontFamily: Maybe<Scalars['String']>;
+    readonly fontColor: Maybe<Scalars['String']>;
+    readonly fontWeight: Maybe<Scalars['String']>;
+    readonly fontSize: Maybe<Scalars['Int']>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsMeta = {
+    readonly title: Maybe<Scalars['String']>;
+    readonly author: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsFontFile = {
+    readonly path: Maybe<Scalars['String']>;
+    readonly family: Maybe<Scalars['String']>;
+    readonly weight: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsOutput = {
+    readonly directory: Maybe<Scalars['String']>;
+    readonly fileName: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsImage = {
+    readonly width: Maybe<Scalars['Int']>;
+    readonly height: Maybe<Scalars['Int']>;
+    readonly backgroundImage: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsStyle = {
+    readonly title: Maybe<SitePluginPluginOptionsStyleTitle>;
+    readonly author: Maybe<SitePluginPluginOptionsStyleAuthor>;
+  };
+
+  type SitePluginPluginOptionsStyleTitle = {
+    readonly fontFamily: Maybe<Scalars['String']>;
+    readonly fontColor: Maybe<Scalars['String']>;
+    readonly fontWeight: Maybe<Scalars['String']>;
+    readonly fontSize: Maybe<Scalars['Int']>;
+    readonly paddingTop: Maybe<Scalars['Int']>;
+    readonly paddingBottom: Maybe<Scalars['Int']>;
+    readonly paddingLeft: Maybe<Scalars['Int']>;
+    readonly paddingRight: Maybe<Scalars['Int']>;
+  };
+
+  type SitePluginPluginOptionsStyleAuthor = {
+    readonly fontFamily: Maybe<Scalars['String']>;
+    readonly fontColor: Maybe<Scalars['String']>;
+    readonly fontWeight: Maybe<Scalars['String']>;
+    readonly fontSize: Maybe<Scalars['Int']>;
+  };
+
+  type SitePluginPluginOptionsMeta = {
+    readonly title: Maybe<Scalars['String']>;
+    readonly author: Maybe<Scalars['String']>;
+  };
+
+  type SitePluginPluginOptionsFontFile = {
+    readonly path: Maybe<Scalars['String']>;
+    readonly family: Maybe<Scalars['String']>;
+    readonly weight: Maybe<Scalars['String']>;
   };
 
   type SitePluginPluginOptionsFeeds = {
@@ -2084,6 +2192,13 @@ declare namespace GatsbyTypes {
     readonly plugins: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
     readonly path: Maybe<StringQueryOperatorInput>;
     readonly name: Maybe<StringQueryOperatorInput>;
+    readonly output: Maybe<SitePluginPluginOptionsOutputFilterInput>;
+    readonly image: Maybe<SitePluginPluginOptionsImageFilterInput>;
+    readonly style: Maybe<SitePluginPluginOptionsStyleFilterInput>;
+    readonly meta: Maybe<SitePluginPluginOptionsMetaFilterInput>;
+    readonly fontFile: Maybe<SitePluginPluginOptionsFontFileFilterListInput>;
+    readonly iconFile: Maybe<StringQueryOperatorInput>;
+    readonly timeout: Maybe<IntQueryOperatorInput>;
     readonly maxWidth: Maybe<IntQueryOperatorInput>;
     readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
     readonly showCaptions: Maybe<BooleanQueryOperatorInput>;
@@ -2127,8 +2242,8 @@ declare namespace GatsbyTypes {
 
   type SitePluginPluginOptionsPluginsFilterInput = {
     readonly resolve: Maybe<StringQueryOperatorInput>;
-    readonly id: Maybe<StringQueryOperatorInput>;
     readonly name: Maybe<StringQueryOperatorInput>;
+    readonly id: Maybe<StringQueryOperatorInput>;
     readonly version: Maybe<StringQueryOperatorInput>;
     readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>;
     readonly nodeAPIs: Maybe<StringQueryOperatorInput>;
@@ -2137,6 +2252,13 @@ declare namespace GatsbyTypes {
   };
 
   type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+    readonly output: Maybe<SitePluginPluginOptionsPluginsPluginOptionsOutputFilterInput>;
+    readonly image: Maybe<SitePluginPluginOptionsPluginsPluginOptionsImageFilterInput>;
+    readonly style: Maybe<SitePluginPluginOptionsPluginsPluginOptionsStyleFilterInput>;
+    readonly meta: Maybe<SitePluginPluginOptionsPluginsPluginOptionsMetaFilterInput>;
+    readonly fontFile: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFontFileFilterListInput>;
+    readonly iconFile: Maybe<StringQueryOperatorInput>;
+    readonly timeout: Maybe<IntQueryOperatorInput>;
     readonly maxWidth: Maybe<IntQueryOperatorInput>;
     readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
     readonly showCaptions: Maybe<BooleanQueryOperatorInput>;
@@ -2150,6 +2272,104 @@ declare namespace GatsbyTypes {
     readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
     readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
     readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsOutputFilterInput = {
+    readonly directory: Maybe<StringQueryOperatorInput>;
+    readonly fileName: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsImageFilterInput = {
+    readonly width: Maybe<IntQueryOperatorInput>;
+    readonly height: Maybe<IntQueryOperatorInput>;
+    readonly backgroundImage: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsStyleFilterInput = {
+    readonly title: Maybe<SitePluginPluginOptionsPluginsPluginOptionsStyleTitleFilterInput>;
+    readonly author: Maybe<SitePluginPluginOptionsPluginsPluginOptionsStyleAuthorFilterInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsStyleTitleFilterInput = {
+    readonly fontFamily: Maybe<StringQueryOperatorInput>;
+    readonly fontColor: Maybe<StringQueryOperatorInput>;
+    readonly fontWeight: Maybe<StringQueryOperatorInput>;
+    readonly fontSize: Maybe<IntQueryOperatorInput>;
+    readonly paddingTop: Maybe<IntQueryOperatorInput>;
+    readonly paddingBottom: Maybe<IntQueryOperatorInput>;
+    readonly paddingLeft: Maybe<IntQueryOperatorInput>;
+    readonly paddingRight: Maybe<IntQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsStyleAuthorFilterInput = {
+    readonly fontFamily: Maybe<StringQueryOperatorInput>;
+    readonly fontColor: Maybe<StringQueryOperatorInput>;
+    readonly fontWeight: Maybe<StringQueryOperatorInput>;
+    readonly fontSize: Maybe<IntQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsMetaFilterInput = {
+    readonly title: Maybe<StringQueryOperatorInput>;
+    readonly author: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsFontFileFilterListInput = {
+    readonly elemMatch: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFontFileFilterInput>;
+  };
+
+  type SitePluginPluginOptionsPluginsPluginOptionsFontFileFilterInput = {
+    readonly path: Maybe<StringQueryOperatorInput>;
+    readonly family: Maybe<StringQueryOperatorInput>;
+    readonly weight: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsOutputFilterInput = {
+    readonly directory: Maybe<StringQueryOperatorInput>;
+    readonly fileName: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsImageFilterInput = {
+    readonly width: Maybe<IntQueryOperatorInput>;
+    readonly height: Maybe<IntQueryOperatorInput>;
+    readonly backgroundImage: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsStyleFilterInput = {
+    readonly title: Maybe<SitePluginPluginOptionsStyleTitleFilterInput>;
+    readonly author: Maybe<SitePluginPluginOptionsStyleAuthorFilterInput>;
+  };
+
+  type SitePluginPluginOptionsStyleTitleFilterInput = {
+    readonly fontFamily: Maybe<StringQueryOperatorInput>;
+    readonly fontColor: Maybe<StringQueryOperatorInput>;
+    readonly fontWeight: Maybe<StringQueryOperatorInput>;
+    readonly fontSize: Maybe<IntQueryOperatorInput>;
+    readonly paddingTop: Maybe<IntQueryOperatorInput>;
+    readonly paddingBottom: Maybe<IntQueryOperatorInput>;
+    readonly paddingLeft: Maybe<IntQueryOperatorInput>;
+    readonly paddingRight: Maybe<IntQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsStyleAuthorFilterInput = {
+    readonly fontFamily: Maybe<StringQueryOperatorInput>;
+    readonly fontColor: Maybe<StringQueryOperatorInput>;
+    readonly fontWeight: Maybe<StringQueryOperatorInput>;
+    readonly fontSize: Maybe<IntQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsMetaFilterInput = {
+    readonly title: Maybe<StringQueryOperatorInput>;
+    readonly author: Maybe<StringQueryOperatorInput>;
+  };
+
+  type SitePluginPluginOptionsFontFileFilterListInput = {
+    readonly elemMatch: Maybe<SitePluginPluginOptionsFontFileFilterInput>;
+  };
+
+  type SitePluginPluginOptionsFontFileFilterInput = {
+    readonly path: Maybe<StringQueryOperatorInput>;
+    readonly family: Maybe<StringQueryOperatorInput>;
+    readonly weight: Maybe<StringQueryOperatorInput>;
   };
 
   type SitePluginPluginOptionsFeedsFilterListInput = {
@@ -2362,14 +2582,27 @@ declare namespace GatsbyTypes {
     | 'pluginCreator.version'
     | 'pluginCreator.pluginOptions.plugins'
     | 'pluginCreator.pluginOptions.plugins.resolve'
-    | 'pluginCreator.pluginOptions.plugins.id'
     | 'pluginCreator.pluginOptions.plugins.name'
+    | 'pluginCreator.pluginOptions.plugins.id'
     | 'pluginCreator.pluginOptions.plugins.version'
     | 'pluginCreator.pluginOptions.plugins.nodeAPIs'
     | 'pluginCreator.pluginOptions.plugins.browserAPIs'
     | 'pluginCreator.pluginOptions.plugins.pluginFilepath'
     | 'pluginCreator.pluginOptions.path'
     | 'pluginCreator.pluginOptions.name'
+    | 'pluginCreator.pluginOptions.output.directory'
+    | 'pluginCreator.pluginOptions.output.fileName'
+    | 'pluginCreator.pluginOptions.image.width'
+    | 'pluginCreator.pluginOptions.image.height'
+    | 'pluginCreator.pluginOptions.image.backgroundImage'
+    | 'pluginCreator.pluginOptions.meta.title'
+    | 'pluginCreator.pluginOptions.meta.author'
+    | 'pluginCreator.pluginOptions.fontFile'
+    | 'pluginCreator.pluginOptions.fontFile.path'
+    | 'pluginCreator.pluginOptions.fontFile.family'
+    | 'pluginCreator.pluginOptions.fontFile.weight'
+    | 'pluginCreator.pluginOptions.iconFile'
+    | 'pluginCreator.pluginOptions.timeout'
     | 'pluginCreator.pluginOptions.maxWidth'
     | 'pluginCreator.pluginOptions.linkImagesToOriginal'
     | 'pluginCreator.pluginOptions.showCaptions'
@@ -3096,9 +3329,12 @@ declare namespace GatsbyTypes {
     | 'version'
     | 'pluginOptions.plugins'
     | 'pluginOptions.plugins.resolve'
-    | 'pluginOptions.plugins.id'
     | 'pluginOptions.plugins.name'
+    | 'pluginOptions.plugins.id'
     | 'pluginOptions.plugins.version'
+    | 'pluginOptions.plugins.pluginOptions.fontFile'
+    | 'pluginOptions.plugins.pluginOptions.iconFile'
+    | 'pluginOptions.plugins.pluginOptions.timeout'
     | 'pluginOptions.plugins.pluginOptions.maxWidth'
     | 'pluginOptions.plugins.pluginOptions.linkImagesToOriginal'
     | 'pluginOptions.plugins.pluginOptions.showCaptions'
@@ -3117,6 +3353,31 @@ declare namespace GatsbyTypes {
     | 'pluginOptions.plugins.pluginFilepath'
     | 'pluginOptions.path'
     | 'pluginOptions.name'
+    | 'pluginOptions.output.directory'
+    | 'pluginOptions.output.fileName'
+    | 'pluginOptions.image.width'
+    | 'pluginOptions.image.height'
+    | 'pluginOptions.image.backgroundImage'
+    | 'pluginOptions.style.title.fontFamily'
+    | 'pluginOptions.style.title.fontColor'
+    | 'pluginOptions.style.title.fontWeight'
+    | 'pluginOptions.style.title.fontSize'
+    | 'pluginOptions.style.title.paddingTop'
+    | 'pluginOptions.style.title.paddingBottom'
+    | 'pluginOptions.style.title.paddingLeft'
+    | 'pluginOptions.style.title.paddingRight'
+    | 'pluginOptions.style.author.fontFamily'
+    | 'pluginOptions.style.author.fontColor'
+    | 'pluginOptions.style.author.fontWeight'
+    | 'pluginOptions.style.author.fontSize'
+    | 'pluginOptions.meta.title'
+    | 'pluginOptions.meta.author'
+    | 'pluginOptions.fontFile'
+    | 'pluginOptions.fontFile.path'
+    | 'pluginOptions.fontFile.family'
+    | 'pluginOptions.fontFile.weight'
+    | 'pluginOptions.iconFile'
+    | 'pluginOptions.timeout'
     | 'pluginOptions.maxWidth'
     | 'pluginOptions.linkImagesToOriginal'
     | 'pluginOptions.showCaptions'
@@ -3221,6 +3482,27 @@ declare namespace GatsbyTypes {
     };
   };
 
+  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
+
+  type RelatedPostsQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
+
   type BlogPostAndRelatedPostsQueryVariables = Exact<{
     id: Scalars['String'];
   }>;
@@ -3242,21 +3524,13 @@ declare namespace GatsbyTypes {
         >;
       }
     >;
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
+  };
+
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+  type PagesQueryQuery = {
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
     };
   };
 
@@ -3342,12 +3616,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
-
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
-  };
 }

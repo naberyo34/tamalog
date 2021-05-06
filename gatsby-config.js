@@ -27,6 +27,51 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-og-image`,
+            options: {
+              output: {
+                directory: '',
+                fileName: 'og_dynamic.png',
+              },
+              image: {
+                width: 1200,
+                height: 630,
+                backgroundImage: require.resolve('./src/images/og_dynamic.png'),
+              },
+              style: {
+                title: {
+                  fontFamily: 'Noto Sans JP',
+                  fontColor: '#3a3a3a',
+                  fontWeight: 'bold',
+                  fontSize: 56,
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  paddingLeft: 56,
+                  paddingRight: 56,
+                },
+                author: {
+                  fontFamily: 'Noto Sans JP',
+                  fontColor: '#3a3a3a',
+                  fontWeight: 'bold',
+                  fontSize: 16,
+                },
+              },
+              meta: {
+                title: '',
+                author: '',
+              },
+              fontFile: [
+                {
+                  path: require.resolve('./src/styles/NotoSansJP-Bold.otf'),
+                  family: 'Noto Sans JP',
+                  weight: 'bold',
+                },
+              ],
+              iconFile: require.resolve('./src/images/dummy.png'),
+              timeout: 10000,
+            },
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 720,

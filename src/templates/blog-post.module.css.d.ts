@@ -4,8 +4,5 @@ declare const styles: {
   readonly thumbnail: string;
   readonly section: string;
   readonly shareButtonsWrapper: string;
-  readonly relatedPostsWrapper: string;
-  readonly relatedPostsInner: string;
-  readonly relatedPost: string;
 };
 export = styles;

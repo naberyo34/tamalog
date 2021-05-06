@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Ryo Watanabe <naberyo34@gmail.com>",
   "dependencies": {
+    "catchy-image": "^0.1.6",
     "gatsby": "^3.3.1",
     "gatsby-plugin-catch-links": "^3.3.0",
     "gatsby-plugin-feed": "^3.2.0",
