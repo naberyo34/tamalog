@@ -1,0 +1,27 @@
+.wrapper {
+  width: calc(100vw - 40px);
+  max-width: 100%;
+  margin-top: 80px;
+}
+
+.inner {
+  display: flex;
+  margin-top: 40px;
+  overflow-x: scroll;
+  list-style: none;
+}
+
+.post {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.post:not(:first-child) {
+  margin-left: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .post:not(:first-child) {
+    margin-left: 20px;
+  }
+}

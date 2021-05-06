@@ -23,34 +23,6 @@
   margin-top: 40px;
 }
 
-.relatedPostsWrapper {
-  width: calc(100vw - 40px);
-  max-width: 100%;
-  margin-top: 80px;
-}
-
-.relatedPostsInner {
-  display: flex;
-  margin-top: 40px;
-  overflow-x: scroll;
-  list-style: none;
-}
-
-.relatedPost {
-  flex-shrink: 0;
-  width: 300px;
-}
-
-.relatedPost:not(:first-child) {
-  margin-left: 40px;
-}
-
-@media screen and (max-width: 767px) {
-  .relatedPost:not(:first-child) {
-    margin-left: 20px;
-  }
-}
-
 /* 記事内スタイル */
 
 .section h2 {
