@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `tamalog`,
     description: `tama / Ryo Watanabe の備忘ブログ`,
-    url: `https://tamalog.netlify.app`,
+    url: `https://tamalog.szmd.jp`,
     twitter: `@momochitama`,
   },
   plugins: [

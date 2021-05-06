@@ -19,6 +19,10 @@
   border-radius: 8px;
 }
 
+.shareButtonsWrapper {
+  margin-top: 80px;
+}
+
 .relatedPostsWrapper {
   width: calc(100vw - 40px);
   max-width: 100%;
