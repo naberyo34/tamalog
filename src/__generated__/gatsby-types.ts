@@ -3200,14 +3200,6 @@ declare namespace GatsbyTypes {
     }>;
   };
 
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
-  };
-
   type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
 
   type BlogIndexQuery = {
@@ -3350,4 +3342,12 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
+
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+  type PagesQueryQuery = {
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
+    };
+  };
 }
