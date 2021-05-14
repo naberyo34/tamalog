@@ -260,7 +260,6 @@ declare namespace GatsbyTypes {
     readonly title: Maybe<Scalars['String']>;
     readonly description: Maybe<Scalars['String']>;
     readonly url: Maybe<Scalars['String']>;
-    readonly social: Maybe<Social>;
     readonly twitter: Maybe<Scalars['String']>;
   };
 
@@ -556,10 +555,6 @@ declare namespace GatsbyTypes {
     readonly height: Maybe<Scalars['Int']>;
     readonly aspectRatio: Maybe<Scalars['Float']>;
     readonly originalName: Maybe<Scalars['String']>;
-  };
-
-  type Social = {
-    readonly twitter: Maybe<Scalars['String']>;
   };
 
   type Frontmatter = {
@@ -2006,11 +2001,6 @@ declare namespace GatsbyTypes {
     readonly title: Maybe<StringQueryOperatorInput>;
     readonly description: Maybe<StringQueryOperatorInput>;
     readonly url: Maybe<StringQueryOperatorInput>;
-    readonly social: Maybe<SocialFilterInput>;
-    readonly twitter: Maybe<StringQueryOperatorInput>;
-  };
-
-  type SocialFilterInput = {
     readonly twitter: Maybe<StringQueryOperatorInput>;
   };
 
@@ -2044,7 +2034,6 @@ declare namespace GatsbyTypes {
     | 'siteMetadata.title'
     | 'siteMetadata.description'
     | 'siteMetadata.url'
-    | 'siteMetadata.social.twitter'
     | 'siteMetadata.twitter'
     | 'polyfill'
     | 'pathPrefix'
@@ -3446,9 +3435,7 @@ declare namespace GatsbyTypes {
   type SeoQuery = {
     readonly site: Maybe<{
       readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description' | 'url'> & {
-          readonly social: Maybe<Pick<Social, 'twitter'>>;
-        }
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
       >;
     }>;
   };

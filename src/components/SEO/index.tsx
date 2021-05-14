@@ -25,9 +25,7 @@ const SEO: React.FC<Props> = ({ title, description, meta, canonicalUrl }) => {
             title
             description
             url
-            social {
-              twitter
-            }
+            twitter
           }
         }
       }
@@ -78,7 +76,7 @@ const SEO: React.FC<Props> = ({ title, description, meta, canonicalUrl }) => {
         },
         {
           name: `twitter:creator`,
-          content: site?.siteMetadata?.social?.twitter || ``,
+          content: site?.siteMetadata?.twitter || ``,
         },
         {
           name: `twitter:title`,

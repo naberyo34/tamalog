@@ -86,10 +86,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       url: String
-      social: Social
-    }
-
-    type Social {
       twitter: String
     }
 
