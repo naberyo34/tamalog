@@ -9,9 +9,10 @@ import RelatedPosts from '@/organisms/RelatedPosts';
 import formatDisplayDate from '@/services/formatDisplayDate';
 import * as styles from './blog-post.module.css';
 
-const BlogPostTemplate: React.FC<
-  PageProps<GatsbyTypes.BlogPostAndRelatedPostsQuery>
-> = ({ location, data }) => {
+const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
+  location,
+  data,
+}) => {
   const siteUrl = data.site?.siteMetadata?.url;
   const canonicalUrl = siteUrl ? `${siteUrl}${location.pathname}` : '';
   const post = data.markdownRemark;
@@ -66,7 +67,7 @@ const BlogPostTemplate: React.FC<
 export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostAndRelatedPosts($id: String!) {
+  query BlogPost($id: String!) {
     site {
       siteMetadata {
         url
