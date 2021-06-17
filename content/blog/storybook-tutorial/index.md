@@ -4,7 +4,7 @@ date: "20210613"
 tags: ["プログラミング", "Storybook"]
 ---
 
-以前Storybookを実案件で使う機会がたまたまあり、そのときは雰囲気で使い方を習得して乗り切ってしまった。今回はそんなStorybookを今一度学び直してみた。ほぼ[公式チュートリアル](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)の焼き直しのため、ほぼ自分用のメモである。
+以前Storybookを実案件で使う機会がたまたまあり、そのときは雰囲気で使い方を習得して乗り切ってしまった。今回はそんなStorybookを今一度学び直してみた。ほぼ[公式チュートリアル](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)の焼き直しのため、自分用のメモである。
 
 ## storiesファイルの書き方基礎
 
