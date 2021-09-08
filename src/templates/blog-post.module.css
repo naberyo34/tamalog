@@ -46,6 +46,10 @@
   list-style: outside;
 }
 
+.section li:not(:first-child) {
+  margin-top: 1em;
+}
+
 .section pre {
   margin: 2em 0 0;
 }
