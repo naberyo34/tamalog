@@ -11,6 +11,14 @@ tags: ["プログラミング", "Storybook"]
 導入については特に迷う点がないので割愛する。
 
 ```jsx
+// Task というコンポーネントに対してStoriesを書く場合
+import Task from './Task';
+
+export default {
+  component: Task,
+  title: 'Task',
+};
+
 const Template = args => <Task {...args} />;
 
 export const Default = Template.bind({});
