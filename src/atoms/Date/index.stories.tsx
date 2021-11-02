@@ -1,8 +1,16 @@
 import React from 'react';
-import Index from './index';
+import { Story } from '@storybook/react';
+import Component from './index';
 
 export default {
   title: 'atoms/Date',
 };
 
-export const Default: React.FC = () => <Index label="2021.05.01" />;
+const Template: Story = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  className: '',
+  children: '2021.05.01',
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import { TwitterShareButton, TwitterIcon } from 'react-share';
 import * as styles from './index.module.css';
 
-type Props = {
+export type Props = {
   url: string;
 };
 

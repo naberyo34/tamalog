@@ -83,7 +83,7 @@ return (
   <>
     {relatedPosts.length !== 0 && (
       <nav className={styles.wrapper}>
-        <BlogIndexHeading label="関連記事" />
+        <BlogIndexHeading>関連記事</BlogIndexHeading>
         <ol className={styles.inner}>
           {relatedPosts.map((relatedPost) => {
             const relatedPostTitle =

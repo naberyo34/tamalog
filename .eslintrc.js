@@ -25,6 +25,10 @@ module.exports = {
   plugins: ['@typescript-eslint', 'import', 'jsx-a11y', 'react', 'react-hooks'],
   root: true,
   rules: {
+    // devDependenciesからのimportを許可
+    'import/no-extraneous-dependencies': 'off',
+    // スプレッド構文でのprops私を許可
+    'react/jsx-props-no-spreading': 'off',
     // Reactのimport時にエラーが出る問題の対策
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],

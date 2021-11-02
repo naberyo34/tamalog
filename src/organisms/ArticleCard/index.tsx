@@ -7,7 +7,7 @@ import Title from '@/atoms/Title';
 import Excerpt from '@/atoms/Excerpt';
 import * as styles from './index.module.css';
 
-type Props = {
+export type Props = {
   img?: string | IGatsbyImageData;
   date: string;
   tags?: readonly GatsbyTypes.Maybe<string>[];
@@ -39,11 +39,11 @@ const ArticleCard: React.FC<Props> = ({
       </div>
       <div className={styles.mt4}>
         <Link to={to}>
-          <Title label={title} />
+          <Title>{title}</Title>
         </Link>
       </div>
       <div className={styles.mt10}>
-        <Excerpt label={excerpt} />
+        <Excerpt>{excerpt}</Excerpt>
       </div>
     </div>
   );

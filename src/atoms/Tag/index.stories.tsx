@@ -1,8 +1,15 @@
 import React from 'react';
-import Index from './index';
+import { Story } from '@storybook/react';
+import Component from './index';
 
 export default {
   title: 'atoms/Tag',
 };
 
-export const Default: React.FC = () => <Index label="プログラミング" />;
+const Template: Story = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  children: 'プログラミング',
+};

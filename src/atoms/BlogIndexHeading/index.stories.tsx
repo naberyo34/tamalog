@@ -1,8 +1,15 @@
 import React from 'react';
-import Index from './index';
+import { Story } from '@storybook/react';
+import Component from './index';
 
 export default {
   title: 'atoms/BlogIndexHeading',
 };
 
-export const Default: React.FC = () => <Index label="最近の記事" />;
+const Template: Story = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  children: '新着記事',
+};

@@ -4,7 +4,7 @@ import Tag from '@/atoms/Tag';
 import Title from '@/atoms/Title';
 import * as styles from './index.module.css';
 
-type Props = {
+export type Props = {
   date: string;
   tags?: readonly GatsbyTypes.Maybe<string>[];
   title: string;
@@ -17,16 +17,16 @@ const ArticleHeading: React.FC<Props> = ({ date, tags, title }) => {
   return (
     <>
       <div className={styles.information}>
-        <Date label={date} className={styles.date} />
+        <Date className={styles.date}>{date}</Date>
         <ul className={styles.tags}>
           {tagsArray.map((tag) => (
             <li key={tag} className={styles.tag}>
-              <Tag label={tag} />
+              <Tag>{tag}</Tag>
             </li>
           ))}
         </ul>
       </div>
-      <Title label={title} className={styles.title} />
+      <Title className={styles.title}>{title}</Title>
     </>
   );
 };

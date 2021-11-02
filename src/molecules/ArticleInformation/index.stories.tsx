@@ -1,13 +1,16 @@
 import React from 'react';
-import Index from './index';
+import { Story } from '@storybook/react';
+import Component, { Props } from './index';
 
 export default {
   title: 'molecules/ArticleInformation',
 };
 
-export const Default: React.FC = () => (
-  <Index
-    date="2021.05.01"
-    tags={['プログラミング', 'TypeScript', 'Gatsby', 'Storybook']}
-  />
-);
+const Template: Story<Props> = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  date: '2021.05.01',
+  tags: ['プログラミング', 'TypeScript', 'Gatsby', 'Storybook'],
+};

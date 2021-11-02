@@ -1,8 +1,11 @@
 import React from 'react';
-import Layout from './index';
+import { Story } from '@storybook/react';
+import Component from './index';
 
 export default {
   title: 'templates/Layout',
 };
 
-export const Default: React.FC = () => <Layout />;
+const Template: Story = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});

@@ -1,8 +1,15 @@
 import React from 'react';
-import Index from './index';
+import { Story } from '@storybook/react';
+import Component, { Props } from './index';
 
 export default {
   title: 'organisms/ShareButtons',
 };
 
-export const Default: React.FC = () => <Index url="https://example.com/" />;
+const Template: Story<Props> = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
+
+Default.args = {
+  url: 'https://example.com/',
+};

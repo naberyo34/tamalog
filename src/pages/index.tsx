@@ -29,7 +29,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout>
       <SEO title="TOP" />
       <nav>
-        <BlogIndexHeading label="新着記事" />
+        <BlogIndexHeading>新着記事</BlogIndexHeading>
         <ol className={styles.latestArticles}>
           {latestPosts.map((post) => {
             const title = post.frontmatter?.title || post.fields?.slug;
@@ -56,7 +56,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
         </ol>
         {previousPosts.length !== 0 && (
           <div className={styles.previousArticlesWrapper}>
-            <BlogIndexHeading label="過去記事" />
+            <BlogIndexHeading>過去記事</BlogIndexHeading>
             <ol className={styles.previousArticles}>
               {previousPosts.map((post) => {
                 const title = post.frontmatter?.title || post.fields?.slug;

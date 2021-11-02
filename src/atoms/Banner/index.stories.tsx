@@ -1,8 +1,11 @@
 import React from 'react';
-import Index from './index';
+import { Story } from '@storybook/react';
+import Component from './index';
 
 export default {
   title: 'atoms/Banner',
 };
 
-export const Default: React.FC = () => <Index />;
+const Template: Story = (args) => <Component {...args} />;
+
+export const Default = Template.bind({});
