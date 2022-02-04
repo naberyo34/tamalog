@@ -8,8 +8,11 @@
   max-width: 800px;
 }
 
-.thumbnail {
+.thumbnailWrapper {
+  display: flex;
+  justify-content: center;
   margin-top: 40px;
+  background: #fff;
 }
 
 .section {

@@ -40,11 +40,9 @@ const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
             title={post?.frontmatter?.title || ''}
           />
           {postThumbnail && (
-            <GatsbyImage
-              className={styles.thumbnail}
-              image={postThumbnail}
-              alt=""
-            />
+            <div className={styles.thumbnailWrapper}>
+              <GatsbyImage image={postThumbnail} alt="" />
+            </div>
           )}
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || '' }}

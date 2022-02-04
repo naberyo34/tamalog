@@ -2,6 +2,7 @@
 title: "Next.jsでMarkdownブログを作る"
 date: "20210913"
 tags: ["プログラミング", "Next.js"]
+thumbnail: "thumbnail.png"
 ---
 
 ## はじめに

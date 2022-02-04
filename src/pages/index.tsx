@@ -14,8 +14,20 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
 }) => {
   const posts = data.allMarkdownRemark.nodes;
-  const latestPosts = posts.slice(0, 6);
-  const previousPosts = posts.slice(6);
+  const programmingPosts = posts.filter((post) => {
+    const tags = post.frontmatter?.tags;
+    if (!tags) return false;
+
+    return tags.includes('プログラミング');
+  });
+  const latestProgrammingPosts = programmingPosts.slice(0, 6);
+  const otherPosts = posts.filter((post) => {
+    const tags = post.frontmatter?.tags;
+    if (!tags) return false;
+
+    return !tags.includes('プログラミング');
+  });
+  const latestOtherPosts = otherPosts.slice(0, 3);
 
   if (posts.length === 0) {
     return (
@@ -29,9 +41,9 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout>
       <SEO title="TOP" />
       <nav>
-        <BlogIndexHeading>新着記事</BlogIndexHeading>
+        <BlogIndexHeading>技術記事</BlogIndexHeading>
         <ol className={styles.latestArticles}>
-          {latestPosts.map((post) => {
+          {latestProgrammingPosts.map((post) => {
             const title = post.frontmatter?.title || post.fields?.slug;
             const postThumbnail =
               post.frontmatter?.thumbnail &&
@@ -54,11 +66,38 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
             );
           })}
         </ol>
-        {previousPosts.length !== 0 && (
-          <div className={styles.previousArticlesWrapper}>
-            <BlogIndexHeading>過去記事</BlogIndexHeading>
+        <div className={styles.articlesWrapper}>
+          <BlogIndexHeading>その他の記事</BlogIndexHeading>
+          <ol className={styles.latestArticles}>
+            {latestOtherPosts.map((post) => {
+              const title = post.frontmatter?.title || post.fields?.slug;
+              const postThumbnail =
+                post.frontmatter?.thumbnail &&
+                // @ts-expect-error (typegen都合?) thumbnailの型が合わない
+                getImage(post.frontmatter.thumbnail);
+              const thumbnail =
+                postThumbnail || getThumbnail(post.frontmatter?.tags);
+
+              return (
+                <li key={title}>
+                  <ArticleCard
+                    img={thumbnail}
+                    date={formatDisplayDate(post.frontmatter?.date)}
+                    tags={post.frontmatter?.tags}
+                    title={title || ''}
+                    excerpt={post.excerpt || ''}
+                    to={post.fields?.slug || ''}
+                  />
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+        {posts.length !== 0 && (
+          <div className={styles.articlesWrapper}>
+            <BlogIndexHeading>すべての記事</BlogIndexHeading>
             <ol className={styles.previousArticles}>
-              {previousPosts.map((post) => {
+              {posts.map((post) => {
                 const title = post.frontmatter?.title || post.fields?.slug;
 
                 return (
