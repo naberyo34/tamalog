@@ -4,13 +4,13 @@ date: "20210506"
 tags: ["プログラミング", "Gatsby"]
 ---
 
-[Qiita](https://qiita.com/)や[Zenn](https://zenn.dev/)などのサービスでは、記事のシェア時に表示されるOGP画像にタイトルの文言などが表示される。これをこのブログでも実装した。
+[Qiita](https://qiita.com/)や[Zenn](https://zenn.dev/)などのサービスでは、記事のシェア時に表示されるOGP画像にタイトルの文言などが表示されます。これをこのブログでも実装してみました。
 
 ## ライブラリの導入とカスタマイズ
 
-[catchy-image](https://github.com/kentaro-m/catchy-image)というライブラリを使用した。Gatsbyでの利用方法も[作者さんのページ](https://blog.kentarom.com/create-gatsbyjs-plugin-to-dynamically-generate-og-images/)に書かれているので、正直ここに書くほどの内容はあまりないのだが……。
+[catchy-image](https://github.com/kentaro-m/catchy-image)というライブラリを使用しています。Gatsbyでの利用方法も[作者さんのページ](https://blog.kentarom.com/create-gatsbyjs-plugin-to-dynamically-generate-og-images/)に書かれているので、正直ここに書くほどの内容はあまりないですが……。
 
-ちょっとしたオリジナリティを出すために、`gatsby-config.js`では下記のような設定を行った。
+ちょっとしたオリジナリティを出すために、`gatsby-config.js`では下記のような設定を行いました。
 
 ```javascript
 // ...
@@ -63,8 +63,8 @@ tags: ["プログラミング", "Gatsby"]
 // ...
 ```
 
-このライブラリでは執筆者のアイコンと名前を表示できるのだが、見る限り非表示の設定がなさそうだったので「1pxの透過アイコン」と「空文字」で対応し、タイトルのみが表示されるよう設定した。ブログのロゴといったデザイン自体は画像として作成し、`backgroundImage`として読み込んでいる。
+このライブラリでは執筆者のアイコンと名前を表示できますが、見る限り非表示の設定がなさそうだったので「1pxの透過アイコン」と「空文字」で対応し、タイトルのみが表示されるよう設定しました。ブログのロゴといったデザイン自体は画像として作成し、`backgroundImage`として読み込んでいます。
 
 ![サンプル](./01.png)
 
-`gatsby build`を叩いたタイミングで、こんな感じの画像が自動生成されるようになった。
+`gatsby build`を叩いたタイミングで、こんな感じの画像が自動生成されるようになりました。

@@ -6,17 +6,17 @@ tags: ["プログラミング", "Next.js"]
 
 ## はじめに
 
-本ブログでも利用されている[Gatsby.js](https://www.gatsbyjs.com/)は、GraphQLを用いてコンテンツを読み込み静的ページを生成する「SSG」としての機能に特化したフレームワークだ。そのため、公式で用意されたボイラープレートを利用すればかなりお手軽にブログサイトを作成することができる。
+本ブログでも利用されている[Gatsby.js](https://www.gatsbyjs.com/)は、GraphQLを用いてコンテンツを読み込み静的ページを生成する「SSG」としての機能に特化したフレームワークです。そのため、公式で用意されたボイラープレートを利用すればかなりお手軽にブログサイトを作成することができます。
 
-一方で、[Next.js](https://nextjs.org/)はSSRやSSGをはじめとする数多くの機能を備えたより汎用的なフレームワークであり、ブログサイトを作成する際には、コンテンツを読み込むロジックなどを自前で実装していく必要がある（そのぶんNext.jsは複雑なWebアプリ制作にも耐えうる柔軟性があり、両者は得意とすることが異なる）。
+一方で[Next.js](https://nextjs.org/)は、SSRやSSGをはじめとする数多くの機能を備えたより汎用的なフレームワークであり、ブログサイトを作成する際には、コンテンツを読み込むロジックなどを自前で実装していく必要があります（そのぶんNext.jsは複雑なWebアプリ制作にも耐えうる柔軟性があり、両者は得意とすることが異なります）。
 
-今回はあえてNext.jsを使って簡素なMarkdownブログを作成することで、Next.jsの核である`getStaticPaths`や`getStaticProps`などの機能について理解を深めていく。
+今回はあえてNext.jsを使って簡素なMarkdownブログを作成することで、Next.jsの核である`getStaticPaths`や`getStaticProps`などの機能について理解を深めていきます。
 
 ## 事前準備
 
-開発に用いたパッケージのバージョンや事前の環境構築については[前回の記事](../next-getting-started)に記載した。
+開発に用いたパッケージのバージョンや事前の環境構築については[前回の記事](../next-getting-started)に記載しました。
 
-なお、以下に記載する手順は、[公式記事](https://nextjs.org/blog/markdown)を参考にしている。
+なお、以下に記載する手順は、[公式記事](https://nextjs.org/blog/markdown)を参考にしています。
 
 ## Markdownファイルを用意する
 
@@ -25,11 +25,11 @@ tags: ["プログラミング", "Next.js"]
 - `content`フォルダ配下にmarkdownを配置する
 - `.md`ファイルを格納するフォルダ名が記事のslugとなる
 
-という仕様で進めていく。以下のようにサンプルファイルをいくつか作成した。
+という仕様で進めていきます。以下のようにサンプルファイルをいくつか作成しました。
 
 ![図1](./01.png)
 
-中身には、ひとまず「YAML形式で記述した記事情報を取得できること」を確認するために下記のように最小限の情報を入れておくとよい。
+中身には、ひとまず「YAML形式で記述した記事情報を取得できること」を確認するために下記のように最小限の情報を入れておくとよいです。
 
 ```
 ---
@@ -45,7 +45,7 @@ tags: ["タグ1"]
 
 ## Markdownをコンパイルするための準備
 
-まずは`.md`ファイルを解釈してHTMLに変換するためのパッケージが必要となる。選択肢が色々あるようだが、今回は[公式のコード例](https://github.com/vercel/next.js/blob/canary/examples/blog-starter/)をリファレンスとした。
+まずは`.md`ファイルを解釈してHTMLに変換するためのパッケージが必要となります。選択肢が色々あるようですが、今回は[公式のコード例](https://github.com/vercel/next.js/blob/canary/examples/blog-starter/)をリファレンスとしました。
 
 ```
 yarn add remark remark-html gray-matter
@@ -56,11 +56,11 @@ yarn add remark remark-html gray-matter
 - `remark`: markdownを解釈するパッケージ
 - `gray-matter`: markdown上に埋め込んだYAML(タイトルやタグ情報などを入れたいときに使う)を解釈するパッケージ
 
-というものだ。この`remark`は追加できるプラグインなどが多いため少々ややこしいのだが、[こちら](https://qiita.com/sankentou/items/f8eadb5722f3b39bbbf8)のQiita記事が参考になった。
+というものです。この`remark`は追加できるプラグインなどが多いため少々ややこしいのですが、[こちら](https://qiita.com/sankentou/items/f8eadb5722f3b39bbbf8)のQiita記事が参考になりました。
 
 ## .mdファイルを読み込む
 
-`remark`による構文変換を行う前段階として、まず`.md`ファイルを`fs`で読み込む必要がある。そのための関数を作成していこう(この関数は、後述する`getStaticProps`の中で実行する)。
+`remark`による構文変換を行う前段階として、まず`.md`ファイルを`fs`で読み込む必要がある。そのための関数を作成していきましょう(この関数は、後述する`getStaticProps`の中で実行する)。
 
 - utils/api.ts
 
@@ -155,19 +155,19 @@ export const getAllPosts = (fields: string[] = []) => {
 
 ```
 
-やや複雑に見えるかもしれないが、整理すると
+やや複雑に見えるかもしれませんが、整理すると
 
 - `content`配下のディレクトリ名をslugとして読み込む
 - `gray-matter`を利用して、`.md`のYAML部分と本文を分割する
 - 「ある記事の特定の情報」および「全記事の特定の情報」を取得できる関数を作成する
 
-という処理を書いている。
+という処理を書いています。
 
-※この時点ではmarkdownの本文部分はプレーンテキストとして取得しているだけで、`remark`による変換は行われていない。
+※この時点ではmarkdownの本文部分はプレーンテキストとして取得しているだけで、`remark`による変換は行われていません。
 
 ## TOPページに記事一覧を表示する
 
-まずは、`content`内にある記事をすべて取得しTOPページに一覧表示を行ってみよう。
+まずは、`content`内にある記事をすべて取得しTOPページに一覧表示を行ってみます。
 
 - src/pages/index.tsx
 
@@ -207,19 +207,19 @@ const Home: NextPage<Props> = ({ allPosts }) => (
 export default Home;
 ```
 
-ごく最小限のコードを記載している。見どころは`getStaticProps`で、先ほど作成した`getAllPosts`関数を利用してmarkdownファイルからの情報取得を行い、Propsとして`Home`コンポーネントに渡されているのがわかる。
+ごく最小限のコードを記載しています。見どころは`getStaticProps`で、先ほど作成した`getAllPosts`関数を利用してmarkdownファイルからの情報取得を行い、Propsとして`Home`コンポーネントに渡されているのがわかります。
 
-なお、`InferGetStaticPropsType`というNext.js組み込みの型を使うことで、`getStaticProps`の返り値からPropsの型を判断することができるのでとても便利だ。
+なお、`InferGetStaticPropsType`というNext.js組み込みの型を使うことで、`getStaticProps`の返り値からPropsの型を判断することができるのでとても便利です。
 
-表示結果は以下のようになる。
+表示結果は以下のようになります。
 
 ![図2](./02.png)
 
 ## slugをもとに記事ページを生成する
 
-もちろん、これだけだと各記事の実体ページは作成されない。動的ルーティング機能を用いて、それぞれのページを生成してみる。
+もちろん、これだけだと各記事の実体ページは作成されません。動的ルーティング機能を用いて、それぞれのページを生成してみましょう。
 
-今回は`docs`ディレクトリの配下に記事ページを配置したかったため、`[slug].tsx`を下記のように配置している。
+今回は`docs`ディレクトリの配下に記事ページを配置したかったため、`[slug].tsx`を下記のように配置しています。
 
 - src/pages/docs/[slug].tsx
 
@@ -276,17 +276,17 @@ const Post: NextPage<Props> = ({ post }) => (
 export default Post;
 ```
 
-ここでは`getStaticPaths`が利用されている。全記事のslugを`getAllPosts`で取得し、そこで得たslugを`getStaticProps`にparamsとして渡すことでページを生成している。
+ここでは`getStaticPaths`が利用されています。全記事のslugを`getAllPosts`で取得し、そこで得たslugを`getStaticProps`にparamsとして渡すことでページを生成しています。
 
-`localhost:3000/docs/[slug]`にアクセスすると、下記のように記事が表示されるはずだ(存在しないslugを指定した場合は404となる)。
+`localhost:3000/docs/[slug]`にアクセスすると、下記のように記事が表示されるはずです(存在しないslugを指定した場合は404となります)。
 
 ![図3](./03.png)
 
-しかし、この時点では**コンテンツ部分のmarkdown記述を変換する**という作業が行われていないため、markdownのタグがそのまま表示されてしまっている。
+しかし、この時点では**コンテンツ部分のmarkdown記述を変換する**という作業が行われていないため、markdownのタグがそのまま表示されてしまっています。
 
 ## remark でmarkdownを整形して表示する
 
-まずは`remark`を用いた構文変換の関数を作る。
+まずは`remark`を用いた構文変換の関数を作ります。
 
 - src/utils/markdownToHtml.ts
 
@@ -306,7 +306,7 @@ const markdownToHtml = async (markdown: string) => {
 export default markdownToHtml;
 ```
 
-続いて、さきほどの`[slug].tsx`の`getStaticProps`内でこの関数を利用する。
+続いて、さきほどの`[slug].tsx`の`getStaticProps`内でこの関数を利用します。
 
 - src/Pages/docs/[slug].tsx
 
@@ -354,13 +354,13 @@ const Post: NextPage<Props> = ({ post }) => (
 export default Post;
 ```
 
-スタイルを付与していないため少々わかりづらいが、`##`がきちんと`h2`として解釈されている。
+スタイルを付与していないため少々わかりづらいですが、`##`がきちんと`h2`として解釈されています。
 
 ![図4](./04.png)
 
 ## TOPページから記事ページへのリンクを行う
 
-最後に、作成した記事ページにTOPページからアクセスできるようにする。`next/link`を使えばよい。
+最後に、作成した記事ページにTOPページからアクセスできるようにします。`next/link`を使えばよいです。
 
 - src/Pages/index.tsx
 
@@ -390,6 +390,6 @@ const Home: NextPage<Props> = ({ allPosts }) => (
 
 ## おわりに
 
-今回は公式サンプルをアレンジしながら再実装するような流れで進めてみたが、どのような仕組みで作られているか、カスタマイズする際にどこを触ればよいかをかなり理解できたと感じている。
+今回は公式サンプルをアレンジしながら再実装するような流れで進めてみましたが、どのような仕組みで作られているか、カスタマイズする際にどこを触ればよいかをかなり理解できたと感じています。
 
-Next.jsはDXがかなり洗練されている印象を受け、使っていてとても楽しいので引き続き学習を進めていきたい。
+Next.jsはDXがかなり洗練されている印象を受け、使っていてとても楽しいので引き続き学習を進めていきたいです。

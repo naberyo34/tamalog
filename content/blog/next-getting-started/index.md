@@ -19,16 +19,16 @@ Next.jsを利用して自主開発アプリ制作を行うため、
 
 ## Next.js + TypeScript + ESLint + Prettier環境を作る
 
-`create-next-app` によって一瞬でNext.jsの環境構築ができる。Next.jsのゼロコンフィグに慣れるとReact単体での開発がとても面倒になる……。
+`create-next-app` によって一瞬でNext.jsの環境構築ができます。Next.jsのゼロコンフィグに慣れるとReact単体での開発がとても面倒になります……。
 
 ```
 npx create-next-app project-name
 yarn add -D typescript @types/react
 ```
 
-`pages`配下にある.jsファイルを.ts または .tsxファイルに変更して`yarn dev`を叩くと、なんと`tsconfig.json`の生成まで自動でやってくれる。
+`pages`配下にある.jsファイルを.ts または .tsxファイルに変更して`yarn dev`を叩くと、なんと`tsconfig.json`の生成まで自動でやってくれます。
 
-基本的な設定は自動生成されたもので十分だが、私は以下の変更を加えた。
+基本的な設定は自動生成されたもので十分ですが、私は以下の変更を加えました。
 
 - strict モードにする
 
@@ -47,13 +47,13 @@ yarn add -D typescript @types/react
 
 ### ESLint を追加
 
-まずはパッケージを導入しよう。
+まずはパッケージを導入します。
 
 ```
 yarn add -D eslint eslint-config-next
 ```
 
-導入できたら、`package.json`に以下のスクリプトを追加してコマンドを実行する。
+導入できたら、`package.json`に以下のスクリプトを追加してコマンドを実行します。
 
 - package.json
 
@@ -66,11 +66,11 @@ yarn add -D eslint eslint-config-next
 yarn lint
 ```
 
-すると、これまた自動で`.eslintrc.json`が生成される。コンフィグはNext.js向けにカスタマイズされたルール`eslint-config-next`が採用されているため、必要であれば設定を調整しておくとよい。
+すると、これまた自動で`.eslintrc.json`が生成されます。コンフィグはNext.js向けにカスタマイズされたルール`eslint-config-next`が採用されているため、必要であれば設定を調整しておくとよいです。
 
 ### prettier を追加
 
-ここはいつもどおりの手順でOK。`.eslintrc.json`を編集し、`eslint-config-prettier`が読み込まれるようにしておこう。
+ここはいつもどおりの手順でOK。`.eslintrc.json`を編集し、`eslint-config-prettier`が読み込まれるようにしておきましょう。
 
 ```
 yarn add -D prettier eslint-config-prettier
@@ -93,9 +93,9 @@ Chakra UI は [Emotion](https://emotion.sh/docs/introduction) をベースにし
 - Emotionのお作法で[Tailwind CSS](https://tailwindcss.com/)に近いUI設計が可能
 - アニメーションライブラリとして[Framer Motion](https://www.framer.com/motion/)をサポートしており、凝った動きも可能
 
-という特徴がある**ようだ**。私は使ったことがないので、この機会に学んでいきたい。
+という特徴がある**ようです**。私は使ったことがないので、この機会に学んでいきたいです。
 
-導入方法は他のCSS in JS系ライブラリとほぼ同様で特筆すべき点はないが、`app.tsx`のコンポーネントを`ChakraProvider`というコンポーネントで括るのを忘れずに。
+導入方法は他のCSS in JS系ライブラリとほぼ同様で特筆すべき点はありませんが、`app.tsx`のコンポーネントを`ChakraProvider`というコンポーネントで括るのを忘れずに。
 
 公式での解説は[こちら](https://chakra-ui.com/guides/with-nextjs)。
 
@@ -124,7 +124,7 @@ export default MyApp;
 
 採用するパッケージによって設定が変わるため、少々初期設定が面倒なStorybook。
 
-[Chakra UI公式のGitHub](https://github.com/chakra-ui/chakra-ui/tree/main/.storybook)に参考となるファイルがあるため、こちらをカスタマイズして進めていく。
+[Chakra UI公式のGitHub](https://github.com/chakra-ui/chakra-ui/tree/main/.storybook)に参考となるファイルがあるため、こちらをカスタマイズして進めていきます。
 
 - preview.tsx
 
@@ -206,6 +206,6 @@ module.exports = {
 
 ## おわりに
 
-本記事では本当にただ導入しただけだが、今後は学習中のAtomic Designと組み合わせてアプリ制作を進めていきたい。
+本記事では本当にただ導入しただけですが、今後は学習中のAtomic Designと組み合わせてアプリ制作を進めていきたいです。
 
-制作の過程で他にも学びがあったら、別記事でまとめていこうと思う。
+制作の過程で他にも学びがあったら、別記事でまとめていこうと思います。
