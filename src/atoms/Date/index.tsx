@@ -6,9 +6,9 @@ type Props = {
 };
 
 const Date: React.FC<Props> = ({ className, children }) => (
-  <span className={className ? `${styles.text} ${className}` : styles.text}>
+  <time className={className ? `${styles.text} ${className}` : styles.text}>
     {children}
-  </span>
+  </time>
 );
 
 export default Date;

@@ -4048,9 +4048,9 @@ declare namespace GatsbyTypes {
     }>;
   };
 
-  type ProgrammingIndexQueryVariables = Exact<{ [key: string]: never }>;
+  type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
 
-  type ProgrammingIndexQuery = {
+  type BlogIndexQuery = {
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, 'excerpt'> & {
@@ -4069,9 +4069,9 @@ declare namespace GatsbyTypes {
     };
   };
 
-  type BlogIndexQueryVariables = Exact<{ [key: string]: never }>;
+  type ProgrammingIndexQueryVariables = Exact<{ [key: string]: never }>;
 
-  type BlogIndexQuery = {
+  type ProgrammingIndexQuery = {
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, 'excerpt'> & {
@@ -4111,27 +4111,6 @@ declare namespace GatsbyTypes {
         >;
       }
     >;
-  };
-
-  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
-
-  type RelatedPostsQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
-    };
   };
 
   type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
@@ -4227,4 +4206,25 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
+
+  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
+
+  type RelatedPostsQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
 }
