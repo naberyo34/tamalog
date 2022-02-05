@@ -43,6 +43,10 @@
     background: #fff;
     border-bottom: none;
   }
+
+  .tocInner li {
+    margin-top: 1em;
+  }
 }
 
 /* 記事内スタイル */
