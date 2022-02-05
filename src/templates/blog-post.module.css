@@ -15,6 +15,20 @@
   background: #fff;
 }
 
+.toc {
+  padding: 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.toc h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tocInner li {
+  line-height: 1.8;
+}
+
 .section {
   padding: 40px;
   margin-top: 40px;

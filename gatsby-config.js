@@ -86,6 +86,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-external-links`,
           },
+          // see: https://www.gatsbyjs.com/plugins/gatsby-remark-autolink-headers/
+          // remark-prismjs より前に配置が必要
+          `gatsby-remark-autolink-headers`,
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
@@ -135,6 +138,7 @@ module.exports = {
                   nodes {
                     excerpt
                     html
+                    tableOfContents
                     fields {
                       slug
                     }

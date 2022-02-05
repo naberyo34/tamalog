@@ -44,6 +44,16 @@ const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
               <GatsbyImage image={postThumbnail} alt="" />
             </div>
           )}
+          {post?.tableOfContents && (
+            <section className={styles.toc}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: post.tableOfContents || '',
+                }}
+                className={styles.tocInner}
+              />
+            </section>
+          )}
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || '' }}
             itemProp="articleBody"
@@ -75,6 +85,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      tableOfContents
       frontmatter {
         title
         date
