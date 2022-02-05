@@ -1,7 +1,14 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig();
+  const miniCssExractPlugin = config.plugins.find(
+    (plugin) => plugin.constructor.name === 'MiniCssExtractPlugin',
+  );
+  if (miniCssExractPlugin) {
+    miniCssExractPlugin.options.ignoreOrder = true;
+  }
   actions.setWebpackConfig({
     resolve: {
       alias: {
