@@ -37,7 +37,7 @@ yarn add gatsby-remark-autolink-headers
 
 ## 記事の見出しリストをGraphQLで取得する
 
-`gatsby-transformer-remark`は標準で記事内に`h`タグを`ol`タグのリストとして取得する機能を持っています。便利！
+`gatsby-transformer-remark`は標準で記事内に`h`タグを`ul`タグのリストとして取得する機能を持っています。便利！
 
 見出しを取得したいページのクエリに`tableOfContents`という項目を追加します。
 
