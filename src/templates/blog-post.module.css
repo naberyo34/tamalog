@@ -20,11 +20,6 @@
   border-bottom: 1px solid #ddd;
 }
 
-.toc h2 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
 .tocInner li {
   line-height: 1.8;
 }
@@ -38,6 +33,16 @@
 
 .shareButtonsWrapper {
   margin-top: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .toc {
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+    background: #fff;
+    border-bottom: none;
+  }
 }
 
 /* 記事内スタイル */

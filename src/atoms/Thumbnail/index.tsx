@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Thumbnail: React.FC<Props> = ({ src }) => {
-  if (!src) return <div className={styles.fallback} />;
+  if (!src) return <div className={styles.fallback}>no image</div>;
 
   if (typeof src === 'string')
     return <img className={styles.image} src={src} alt="" />;

@@ -6,9 +6,9 @@ type Props = {
 };
 
 const Title: React.FC<Props> = ({ className, children }) => (
-  <p className={className ? `${styles.text} ${className}` : styles.text}>
+  <span className={className ? `${styles.text} ${className}` : styles.text}>
     {children}
-  </p>
+  </span>
 );
 
 export default Title;

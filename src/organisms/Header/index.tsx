@@ -7,10 +7,14 @@ import * as styles from './index.module.css';
 const Header: React.FC = () => (
   <header className={styles.wrapper}>
     <div className={styles.inner}>
-      <Link to="/">
-        <Logo />
-      </Link>
-      <SiteDescription>技術記事とか日々の記録とか</SiteDescription>
+      <div className={styles.heading}>
+        <Link to="/">
+          <Logo />
+        </Link>
+        <div className={styles.siteDescription}>
+          <SiteDescription>技術記事とか日々の記録とか</SiteDescription>
+        </div>
+      </div>
     </div>
   </header>
 );

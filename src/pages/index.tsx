@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, PageProps, Link } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import SEO from '@/components/SEO';
 import Layout from '@/templates/Layout';
@@ -41,7 +41,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout>
       <SEO title="TOP" />
       <nav>
-        <BlogIndexHeading>技術記事</BlogIndexHeading>
+        <BlogIndexHeading>プログラミング</BlogIndexHeading>
         <ol className={styles.latestArticles}>
           {latestProgrammingPosts.map((post) => {
             const title = post.frontmatter?.title || post.fields?.slug;
@@ -66,6 +66,11 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
             );
           })}
         </ol>
+        <div className={styles.moreLinkWrapper}>
+          <Link to="/categories/programming">
+            プログラミングの記事をもっと見る
+          </Link>
+        </div>
         <div className={styles.articlesWrapper}>
           <BlogIndexHeading>その他の記事</BlogIndexHeading>
           <ol className={styles.latestArticles}>
@@ -92,29 +97,12 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
               );
             })}
           </ol>
+          {/* <div className={styles.moreLinkWrapper}>
+            <Link to="/categories/all">
+              すべての記事をもっと見る
+            </Link>
+          </div> */}
         </div>
-        {posts.length !== 0 && (
-          <div className={styles.articlesWrapper}>
-            <BlogIndexHeading>すべての記事</BlogIndexHeading>
-            <ol className={styles.previousArticles}>
-              {posts.map((post) => {
-                const title = post.frontmatter?.title || post.fields?.slug;
-
-                return (
-                  <li key={title}>
-                    <ArticleCard
-                      date={formatDisplayDate(post.frontmatter?.date)}
-                      tags={post.frontmatter?.tags}
-                      title={title || ''}
-                      excerpt={post.excerpt || ''}
-                      to={post.fields?.slug || ''}
-                    />
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
-        )}
       </nav>
     </Layout>
   );
@@ -123,7 +111,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query BlogIndex {
+  query ProgrammingIndex {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt(pruneLength: 50, truncate: true)

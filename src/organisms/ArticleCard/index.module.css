@@ -1,16 +1,7 @@
-.wrapper a {
-  color: inherit;
+.thumbnail a:hover {
   text-decoration: none;
 }
 
-.wrapper a:hover {
-  text-decoration: underline;
-}
-
-.mt4 {
+.information {
   margin-top: 4px;
-}
-
-.mt10 {
-  margin-top: 10px;
 }

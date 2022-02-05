@@ -3,8 +3,6 @@ import { Link } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import Thumbnail from '@/atoms/Thumbnail';
 import ArticleInformation from '@/molecules/ArticleInformation';
-import Title from '@/atoms/Title';
-import Excerpt from '@/atoms/Excerpt';
 import * as styles from './index.module.css';
 
 export type Props = {
@@ -28,22 +26,20 @@ const ArticleCard: React.FC<Props> = ({
   const tagsArray = tags && tags.length > 0 ? (tags as string[]) : [];
 
   return (
-    <div className={styles.wrapper}>
-      {img && (
+    <div>
+      <div className={styles.thumbnail}>
         <Link to={to}>
           <Thumbnail src={img} />
         </Link>
-      )}
-      <div className={styles.mt10}>
-        <ArticleInformation date={date} tags={tagsArray} />
       </div>
-      <div className={styles.mt4}>
-        <Link to={to}>
-          <Title>{title}</Title>
-        </Link>
-      </div>
-      <div className={styles.mt10}>
-        <Excerpt>{excerpt}</Excerpt>
+      <div className={styles.information}>
+        <ArticleInformation
+          date={date}
+          to={to}
+          title={title}
+          excerpt={excerpt}
+          tags={tagsArray}
+        />
       </div>
     </div>
   );

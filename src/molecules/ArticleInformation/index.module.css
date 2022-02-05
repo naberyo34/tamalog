@@ -1,7 +1,16 @@
+.title {
+  margin-top: 4px;
+  color: #3a3a3a;
+}
+
+.excerpt {
+  margin-top: 4px;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
-  margin-top: -4px;
+  margin-top: 4px;
 }
 
 .tag {
@@ -10,9 +19,4 @@
 
 .tag:not(:last-child) {
   margin-right: 4px;
-}
-
-.mt {
-  margin-top: 4px;
-  text-align: right;
 }
