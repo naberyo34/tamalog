@@ -10,7 +10,7 @@ import getThumbnail from '@/services/getThumbnail';
 
 import * as styles from './index.module.css';
 
-const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
+const BlogIndex: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({
   data,
 }) => {
   const posts = data.allMarkdownRemark.nodes;
@@ -98,11 +98,9 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
             );
           })}
         </ol>
-        {/* <div className={styles.moreLinkWrapper}>
-            <Link to="/categories/all">
-              すべての記事をもっと見る
-            </Link>
-          </div> */}
+        <div className={styles.moreLinkWrapper}>
+          <Link to="/categories/all">すべての記事を見る</Link>
+        </div>
       </section>
     </Layout>
   );
@@ -111,7 +109,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query ProgrammingIndex {
+  query TopIndex {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt(pruneLength: 50, truncate: true)

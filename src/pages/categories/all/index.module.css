@@ -1,0 +1,12 @@
+.articles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 40px;
+  list-style: none;
+}
+
+.article {
+  padding-left: 12px;
+  border-left: 4px solid #ddd;
+}

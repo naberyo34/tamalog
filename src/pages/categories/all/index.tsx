@@ -8,16 +8,10 @@ import formatDisplayDate from '@/services/formatDisplayDate';
 
 import * as styles from './index.module.css';
 
-const BlogIndex: React.FC<PageProps<GatsbyTypes.ProgrammingIndexQuery>> = ({
+const BlogIndex: React.FC<PageProps<GatsbyTypes.AllIndexQuery>> = ({
   data,
 }) => {
   const posts = data.allMarkdownRemark.nodes;
-  const programmingPosts = posts.filter((post) => {
-    const tags = post.frontmatter?.tags;
-    if (!tags) return false;
-
-    return tags.includes('プログラミング');
-  });
 
   if (posts.length === 0) {
     return (
@@ -32,9 +26,9 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.ProgrammingIndexQuery>> = ({
       <SEO title="TOP" />
       <nav>
         <section className={styles.articles}>
-          <BlogIndexHeading>プログラミング</BlogIndexHeading>
+          <BlogIndexHeading>すべての記事</BlogIndexHeading>
           <ol className={styles.articles}>
-            {programmingPosts.map((post) => {
+            {posts.map((post) => {
               const title = post.frontmatter?.title || post.fields?.slug;
 
               return (
@@ -59,7 +53,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.ProgrammingIndexQuery>> = ({
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query ProgrammingIndex {
+  query AllIndex {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt(pruneLength: 50, truncate: true)
