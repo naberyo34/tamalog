@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `tamalog`,
-    description: `tama / Ryo Watanabe の備忘ブログ`,
+    description: `技術記事とか日々の記録とか by tama`,
     url: `https://tamalog.szmd.jp`,
     twitter: `@momochitama`,
   },
