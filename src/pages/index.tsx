@@ -40,7 +40,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   return (
     <Layout>
       <SEO title="TOP" />
-      <nav>
+      <section className={styles.articles}>
         <BlogIndexHeading>プログラミング</BlogIndexHeading>
         <ol className={styles.latestArticles}>
           {latestProgrammingPosts.map((post) => {
@@ -71,39 +71,39 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
             プログラミングの記事をもっと見る
           </Link>
         </div>
-        <div className={styles.articlesWrapper}>
-          <BlogIndexHeading>その他の記事</BlogIndexHeading>
-          <ol className={styles.latestArticles}>
-            {latestOtherPosts.map((post) => {
-              const title = post.frontmatter?.title || post.fields?.slug;
-              const postThumbnail =
-                post.frontmatter?.thumbnail &&
-                // @ts-expect-error (typegen都合?) thumbnailの型が合わない
-                getImage(post.frontmatter.thumbnail);
-              const thumbnail =
-                postThumbnail || getThumbnail(post.frontmatter?.tags);
+      </section>
+      <section className={styles.articles}>
+        <BlogIndexHeading>その他の記事</BlogIndexHeading>
+        <ol className={styles.latestArticles}>
+          {latestOtherPosts.map((post) => {
+            const title = post.frontmatter?.title || post.fields?.slug;
+            const postThumbnail =
+              post.frontmatter?.thumbnail &&
+              // @ts-expect-error (typegen都合?) thumbnailの型が合わない
+              getImage(post.frontmatter.thumbnail);
+            const thumbnail =
+              postThumbnail || getThumbnail(post.frontmatter?.tags);
 
-              return (
-                <li key={title}>
-                  <ArticleCard
-                    img={thumbnail}
-                    date={formatDisplayDate(post.frontmatter?.date)}
-                    tags={post.frontmatter?.tags}
-                    title={title || ''}
-                    excerpt={post.excerpt || ''}
-                    to={post.fields?.slug || ''}
-                  />
-                </li>
-              );
-            })}
-          </ol>
-          {/* <div className={styles.moreLinkWrapper}>
+            return (
+              <li key={title}>
+                <ArticleCard
+                  img={thumbnail}
+                  date={formatDisplayDate(post.frontmatter?.date)}
+                  tags={post.frontmatter?.tags}
+                  title={title || ''}
+                  excerpt={post.excerpt || ''}
+                  to={post.fields?.slug || ''}
+                />
+              </li>
+            );
+          })}
+        </ol>
+        {/* <div className={styles.moreLinkWrapper}>
             <Link to="/categories/all">
               すべての記事をもっと見る
             </Link>
           </div> */}
-        </div>
-      </nav>
+      </section>
     </Layout>
   );
 };

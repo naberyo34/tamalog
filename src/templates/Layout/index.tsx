@@ -6,9 +6,9 @@ import * as styles from './index.module.css';
 const Layout: React.FC = ({ children }) => (
   <>
     <Header />
-    <section className={styles.wrapper}>
+    <main className={styles.wrapper}>
       <div className={styles.inner}>{children}</div>
-    </section>
+    </main>
     <Footer />
   </>
 );

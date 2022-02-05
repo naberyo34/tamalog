@@ -3,6 +3,7 @@ declare const styles: {
   readonly inner: string;
   readonly thumbnailWrapper: string;
   readonly toc: string;
+  readonly tocHeading: string;
   readonly tocInner: string;
   readonly section: string;
   readonly shareButtonsWrapper: string;

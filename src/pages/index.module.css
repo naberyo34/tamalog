@@ -1,3 +1,9 @@
+.articles:not(:first-child) {
+  padding-top: 40px;
+  margin-top: 80px;
+  border-top: 1px solid #ddd;
+}
+
 .latestArticles {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
@@ -5,12 +11,6 @@
   justify-content: center;
   margin-top: 40px;
   list-style: none;
-}
-
-.articlesWrapper {
-  padding-top: 40px;
-  margin-top: 80px;
-  border-top: 1px solid #ddd;
 }
 
 .moreLinkWrapper {

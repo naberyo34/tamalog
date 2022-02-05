@@ -1,6 +1,6 @@
 declare const styles: {
+  readonly articles: string;
   readonly latestArticles: string;
-  readonly articlesWrapper: string;
   readonly moreLinkWrapper: string;
 };
 export = styles;

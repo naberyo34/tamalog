@@ -24,7 +24,9 @@ const ArticleInformation: React.FC<Props> = ({
   <div>
     <Date>{date}</Date>
     <Link to={to}>
-      <Title className={styles.title}>{title}</Title>
+      <Title className={styles.title} isH2>
+        {title}
+      </Title>
     </Link>
     <Excerpt className={styles.excerpt}>{excerpt}</Excerpt>
     <ul className={styles.tags}>

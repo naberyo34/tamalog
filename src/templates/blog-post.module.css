@@ -16,11 +16,18 @@
 }
 
 .toc {
-  padding: 40px;
+  padding: 0 40px;
+  margin-top: 40px;
+}
+
+.tocHeading {
+  padding-bottom: 1em;
+  font-weight: bold;
   border-bottom: 1px solid #ddd;
 }
 
 .tocInner li {
+  margin-top: 1em;
   line-height: 1.8;
 }
 
@@ -38,14 +45,8 @@
 @media screen and (max-width: 767px) {
   .toc {
     padding: 20px;
-    margin-top: 40px;
     font-size: 14px;
     background: #fff;
-    border-bottom: none;
-  }
-
-  .tocInner li {
-    margin-top: 1em;
   }
 }
 

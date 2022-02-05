@@ -31,24 +31,26 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout>
       <SEO title="TOP" />
       <nav>
-        <BlogIndexHeading>プログラミング</BlogIndexHeading>
-        <ol className={styles.articles}>
-          {programmingPosts.map((post) => {
-            const title = post.frontmatter?.title || post.fields?.slug;
+        <section className={styles.articles}>
+          <BlogIndexHeading>プログラミング</BlogIndexHeading>
+          <ol className={styles.articles}>
+            {programmingPosts.map((post) => {
+              const title = post.frontmatter?.title || post.fields?.slug;
 
-            return (
-              <li key={title} className={styles.article}>
-                <ArticleInformation
-                  date={formatDisplayDate(post.frontmatter?.date)}
-                  tags={post.frontmatter?.tags || []}
-                  title={title || ''}
-                  excerpt={post.excerpt || ''}
-                  to={post.fields?.slug || ''}
-                />
-              </li>
-            );
-          })}
-        </ol>
+              return (
+                <li key={title} className={styles.article}>
+                  <ArticleInformation
+                    date={formatDisplayDate(post.frontmatter?.date)}
+                    tags={post.frontmatter?.tags || []}
+                    title={title || ''}
+                    excerpt={post.excerpt || ''}
+                    to={post.fields?.slug || ''}
+                  />
+                </li>
+              );
+            })}
+          </ol>
+        </section>
       </nav>
     </Layout>
   );

@@ -46,6 +46,7 @@ const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
           )}
           {post?.tableOfContents && (
             <section className={styles.toc}>
+              <h2 className={styles.tocHeading}>もくじ</h2>
               <div
                 dangerouslySetInnerHTML={{
                   __html: post.tableOfContents || '',
