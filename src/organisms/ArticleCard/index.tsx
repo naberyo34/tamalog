@@ -28,7 +28,7 @@ const ArticleCard: React.FC<Props> = ({
   return (
     <div>
       <div className={styles.thumbnail}>
-        <Link to={to}>
+        <Link to={to} title={title}>
           <Thumbnail src={img} />
         </Link>
       </div>
