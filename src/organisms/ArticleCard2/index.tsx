@@ -33,7 +33,9 @@ const ArticleCard2: React.FC<Props> = ({
         tags={tagsArray}
       />
       {img && typeof img !== 'string' && (
-        <GatsbyImage className={styles.image} image={img} alt="" />
+        <div className={styles.imageWrapper}>
+          <GatsbyImage className={styles.image} image={img} alt="" />
+        </div>
       )}
     </div>
   );
