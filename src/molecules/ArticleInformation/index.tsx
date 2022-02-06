@@ -20,23 +20,28 @@ const ArticleInformation: React.FC<Props> = ({
   date,
   tags,
   excerpt,
-}) => (
-  <div>
-    <Date>{date}</Date>
-    <Link to={to}>
-      <Title className={styles.title} isH2>
-        {title}
-      </Title>
-    </Link>
-    <Excerpt className={styles.excerpt}>{excerpt}</Excerpt>
-    <ul className={styles.tags}>
-      {tags.map((tag) => (
-        <li key={tag} className={styles.tag}>
-          <Tag>{tag}</Tag>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+}) => {
+  // note: Maybe<string>[]をstring[]にType Assertion
+  const tagsArray = tags && tags.length > 0 ? (tags as string[]) : [];
+
+  return (
+    <div>
+      <Date>{date}</Date>
+      <Link to={to}>
+        <Title className={styles.title} isH2>
+          {title}
+        </Title>
+      </Link>
+      <Excerpt className={styles.excerpt}>{excerpt}</Excerpt>
+      <ul className={styles.tags}>
+        {tagsArray.map((tag) => (
+          <li key={tag} className={styles.tag}>
+            <Tag to={`/tags/${tag}`}>{tag}</Tag>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default ArticleInformation;

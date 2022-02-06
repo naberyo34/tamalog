@@ -16,11 +16,14 @@ module.exports = {
     // use @babel/preset-react for JSX and env (instead of staged presets)
     config.module.rules[0].use[0].options.presets = [
       require.resolve('@babel/preset-react'),
-      require.resolve('@babel/preset-env'),
+      [require.resolve('@babel/preset-env'), { loose: true }],
     ];
     config.module.rules[0].use[0].options.plugins = [
       // use @babel/plugin-proposal-class-properties for class arrow functions
-      require.resolve('@babel/plugin-proposal-class-properties'),
+      [
+        require.resolve('@babel/plugin-proposal-class-properties'),
+        { loose: true },
+      ],
       // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
       require.resolve('babel-plugin-remove-graphql-queries'),
     ];
@@ -32,7 +35,10 @@ module.exports = {
       options: {
         presets: [['react-app', { flow: false, typescript: true }]],
         plugins: [
-          require.resolve('@babel/plugin-proposal-class-properties'),
+          [
+            require.resolve('@babel/plugin-proposal-class-properties'),
+            { loose: true },
+          ],
           // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
           require.resolve('babel-plugin-remove-graphql-queries'),
         ],

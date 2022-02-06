@@ -19,15 +19,16 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 };
 
 /**
- * queryで取得したデータをもとにページを生成 (記事ページ)
+ * ページ生成
  */
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
+  const blogPostTemplate = path.resolve(`./src/templates/blog-post/index.tsx`);
+  const tagsTemplate = path.resolve(`./src/templates/tags/index.tsx`);
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
+        posts: allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: ASC }
           limit: 1000
         ) {
@@ -38,27 +39,44 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        tags: allMarkdownRemark(limit: 1000) {
+          group(field: frontmatter___tags) {
+            tag: fieldValue
+          }
+        }
       }
     `,
   );
 
   if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      result.errors,
-    );
+    reporter.panicOnBuild(`記事ページ生成に失敗しました`, result.errors);
     return;
   }
 
-  const posts = result.data.allMarkdownRemark.nodes;
+  const posts = result.data.posts.nodes;
+  const tags = result.data.tags.group;
 
+  // 取得した記事IDの数だけ記事ページを作る
   if (posts.length > 0) {
     posts.forEach((post) => {
       createPage({
         path: post.fields.slug,
-        component: blogPost,
+        component: blogPostTemplate,
         context: {
           id: post.id,
+        },
+      });
+    });
+  }
+
+  // 取得したタグの数だけタグページを作る
+  if (tags.length > 0) {
+    tags.forEach((tag) => {
+      createPage({
+        path: `tags/${tag.tag}`,
+        component: tagsTemplate,
+        context: {
+          tag: tag.tag,
         },
       });
     });

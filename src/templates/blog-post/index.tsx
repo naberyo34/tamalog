@@ -7,7 +7,7 @@ import ArticleHeading from '@/molecules/ArticleHeading';
 import ShareButtons from '@/organisms/ShareButtons';
 import RelatedPosts from '@/organisms/RelatedPosts';
 import formatDisplayDate from '@/services/formatDisplayDate';
-import * as styles from './blog-post.module.css';
+import * as styles from './index.module.css';
 
 const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
   location,

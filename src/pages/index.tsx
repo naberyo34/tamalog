@@ -7,12 +7,9 @@ import BlogIndexHeading from '@/atoms/BlogIndexHeading';
 import ArticleCard from '@/organisms/ArticleCard';
 import formatDisplayDate from '@/services/formatDisplayDate';
 import getThumbnail from '@/services/getThumbnail';
-
 import * as styles from './index.module.css';
 
-const BlogIndex: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({
-  data,
-}) => {
+const Top: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({ data }) => {
   const posts = data.allMarkdownRemark.nodes;
   const programmingPosts = posts.filter((post) => {
     const tags = post.frontmatter?.tags;
@@ -20,7 +17,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({
 
     return tags.includes('プログラミング');
   });
-  const latestProgrammingPosts = programmingPosts.slice(0, 6);
+  const latestProgrammingPosts = programmingPosts.slice(0, 9);
   const otherPosts = posts.filter((post) => {
     const tags = post.frontmatter?.tags;
     if (!tags) return false;
@@ -67,7 +64,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({
           })}
         </ol>
         <div className={styles.moreLinkWrapper}>
-          <Link to="/categories/programming">
+          <Link to="/tags/プログラミング">
             プログラミングの記事をもっと見る
           </Link>
         </div>
@@ -99,14 +96,14 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({
           })}
         </ol>
         <div className={styles.moreLinkWrapper}>
-          <Link to="/categories/all">すべての記事を見る</Link>
+          <Link to="/all">すべての記事を見る</Link>
         </div>
       </section>
     </Layout>
   );
 };
 
-export default BlogIndex;
+export default Top;
 
 export const pageQuery = graphql`
   query TopIndex {

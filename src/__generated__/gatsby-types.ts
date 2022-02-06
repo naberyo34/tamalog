@@ -243,6 +243,8 @@ declare namespace GatsbyTypes {
   type Site = Node & {
     readonly buildTime: Maybe<Scalars['Date']>;
     readonly siteMetadata: Maybe<SiteSiteMetadata>;
+    readonly port: Maybe<Scalars['Int']>;
+    readonly host: Maybe<Scalars['String']>;
     readonly polyfill: Maybe<Scalars['Boolean']>;
     readonly pathPrefix: Maybe<Scalars['String']>;
     readonly id: Scalars['ID'];
@@ -297,6 +299,7 @@ declare namespace GatsbyTypes {
 
   type SitePageContext = {
     readonly id: Maybe<Scalars['String']>;
+    readonly tag: Maybe<Scalars['String']>;
   };
 
   type SitePlugin = Node & {
@@ -975,6 +978,8 @@ declare namespace GatsbyTypes {
   type Query_siteArgs = {
     buildTime: Maybe<DateQueryOperatorInput>;
     siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+    port: Maybe<IntQueryOperatorInput>;
+    host: Maybe<StringQueryOperatorInput>;
     polyfill: Maybe<BooleanQueryOperatorInput>;
     pathPrefix: Maybe<StringQueryOperatorInput>;
     id: Maybe<StringQueryOperatorInput>;
@@ -2194,6 +2199,8 @@ declare namespace GatsbyTypes {
     | 'siteMetadata.description'
     | 'siteMetadata.url'
     | 'siteMetadata.twitter'
+    | 'port'
+    | 'host'
     | 'polyfill'
     | 'pathPrefix'
     | 'id'
@@ -2322,6 +2329,8 @@ declare namespace GatsbyTypes {
   type SiteFilterInput = {
     readonly buildTime: Maybe<DateQueryOperatorInput>;
     readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+    readonly port: Maybe<IntQueryOperatorInput>;
+    readonly host: Maybe<StringQueryOperatorInput>;
     readonly polyfill: Maybe<BooleanQueryOperatorInput>;
     readonly pathPrefix: Maybe<StringQueryOperatorInput>;
     readonly id: Maybe<StringQueryOperatorInput>;
@@ -2527,6 +2536,7 @@ declare namespace GatsbyTypes {
 
   type SitePageContextFilterInput = {
     readonly id: Maybe<StringQueryOperatorInput>;
+    readonly tag: Maybe<StringQueryOperatorInput>;
   };
 
   type SitePluginFilterInput = {
@@ -2917,6 +2927,7 @@ declare namespace GatsbyTypes {
     | 'internal.type'
     | 'isCreatedByStatefulCreatePages'
     | 'context.id'
+    | 'context.tag'
     | 'pluginCreator.resolve'
     | 'pluginCreator.name'
     | 'pluginCreator.version'
@@ -4030,9 +4041,66 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
   };
 
-  type AllIndexQueryVariables = Exact<{ [key: string]: never }>;
+  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
 
-  type AllIndexQuery = {
+  type RelatedPostsQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
+
+  type SeoQueryVariables = Exact<{ [key: string]: never }>;
+
+  type SeoQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
+      >;
+    }>;
+  };
+
+  type TagIndexQueryVariables = Exact<{
+    tag: Scalars['String'];
+  }>;
+
+  type TagIndexQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'url'>>;
+    }>;
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
+
+  type TopIndexQueryVariables = Exact<{ [key: string]: never }>;
+
+  type TopIndexQuery = {
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, 'excerpt'> & {
@@ -4134,9 +4202,12 @@ declare namespace GatsbyTypes {
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
 
-  type TopIndexQueryVariables = Exact<{ [key: string]: never }>;
+  type AllIndexQueryVariables = Exact<{ [key: string]: never }>;
 
-  type TopIndexQuery = {
+  type AllIndexQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'url'>>;
+    }>;
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, 'excerpt'> & {
@@ -4153,16 +4224,6 @@ declare namespace GatsbyTypes {
         }
       >;
     };
-  };
-
-  type SeoQueryVariables = Exact<{ [key: string]: never }>;
-
-  type SeoQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
-      >;
-    }>;
   };
 
   type BlogPostQueryVariables = Exact<{
@@ -4188,45 +4249,14 @@ declare namespace GatsbyTypes {
     >;
   };
 
-  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
 
-  type RelatedPostsQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
+  type PagesQueryQuery = {
+    readonly allSiteFunction: {
+      readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>>;
     };
-  };
-
-  type ProgrammingIndexQueryVariables = Exact<{ [key: string]: never }>;
-
-  type ProgrammingIndexQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
     };
   };
 }

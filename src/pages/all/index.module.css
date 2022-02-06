@@ -1,0 +1,15 @@
+.articlesWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  list-style: none;
+}

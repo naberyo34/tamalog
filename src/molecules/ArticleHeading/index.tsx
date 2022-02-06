@@ -21,7 +21,7 @@ const ArticleHeading: React.FC<Props> = ({ date, tags, title }) => {
         <ul className={styles.tags}>
           {tagsArray.map((tag) => (
             <li key={tag} className={styles.tag}>
-              <Tag>{tag}</Tag>
+              <Tag to={`/tags/${tag}`}>{tag}</Tag>
             </li>
           ))}
         </ul>
