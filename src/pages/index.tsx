@@ -24,7 +24,7 @@ const Top: React.FC<PageProps<GatsbyTypes.TopIndexQuery>> = ({ data }) => {
 
     return !tags.includes('プログラミング');
   });
-  const latestOtherPosts = otherPosts.slice(0, 3);
+  const latestOtherPosts = otherPosts.slice(0, 6);
 
   if (posts.length === 0) {
     return (

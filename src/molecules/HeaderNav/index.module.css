@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    display: none;
+  }
+}
