@@ -122,7 +122,7 @@ TypeScriptの利用時は`css prop`の型定義がないと怒られてしまう
 
 ## next/link 利用時の注意
 
-[Next.jsの公式](https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-custom-component-that-wraps-an-a-tag)に記載がありますが、Emotionの利用時は`next/link`を使う際に`passHref`が必要になります。
+[Next.jsの公式](https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-custom-component-that-wraps-an-a-tag)に記載がありますが、Emotion（styled-componentsでも同様）の利用時は`next/link`を使う際に`passHref`が必要になります。
 
 また、css propを付与するのは`Link`配下の要素となるため注意しましょう。
 毎回書くのは面倒なので、ラップするだけのコンポーネントを作ってあげるとよいと思います。
