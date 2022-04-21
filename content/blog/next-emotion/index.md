@@ -100,7 +100,7 @@ yarn add @emotion/react @emotion/babel-plugin
 }
 ```
 
-なお、`create-react-app`を利用している場合などbabelの設定変更ができない環境では、[JSX Pragma(https://emotion.sh/docs/css-prop#jsx-pragma)]を用いて対応できるようです。ただし、毎回独自コメントの記載が必要になるので少々面倒です。
+なお、`create-react-app`を利用している場合などbabelの設定変更ができない環境では、[JSX Pragma](https://emotion.sh/docs/css-prop#jsx-pragma)を用いて対応できるようです。ただし、毎回独自コメントの記載が必要になるので少々面倒です。
 
 ### TypeScript向けに設定
 
