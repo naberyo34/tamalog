@@ -82,7 +82,7 @@ yarn add @emotion/react @emotion/babel-plugin
 ```jsx
 //  こういうの
 <h1 css={styles}>hoge<h1>
-``
+```
 
 さらに、プロジェクトに`.babelrc`を追加します。Next.js利用時の設定も上記の公式ページに記載してくれています。親切！
 
