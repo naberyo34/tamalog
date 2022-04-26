@@ -17,7 +17,7 @@ thumbnail: "thumbnail.png"
 - TypeScript 4.6.3
 - Contentful 無料版
 
-基本的な環境のセットアップは完了しており、Next.jsの`getStaticProps`などの機能は理解している前提の記事となります。Next.jsの基礎について解説した[過去記事](../next-contentful/)もあるので、よければ読んでみてください。
+基本的な環境のセットアップは完了しており、Next.jsの`getStaticProps`などの機能は理解している前提の記事となります。Next.jsの基礎について解説した[過去記事](../next-markdown-blog/)もあるので、よければ読んでみてください。
 
 ## そもそもContentfulって何？
 
