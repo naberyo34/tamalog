@@ -2,6 +2,7 @@
 title: "Next.js + Contentfulでポートフォリオを作ろう その1 準備編"
 date: "20220426"
 tags: ["プログラミング", "Next.js", "Contentful"]
+thumbnail: "thumbnail.png"
 ---
 
 ふと思い立ち、私のエンジニアとしてのプロフィールを記載した[ポートフォリオ](https://szmd.jp/) を作りました。3D表現をかわいく作れたので気に入っています。
