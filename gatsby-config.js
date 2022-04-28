@@ -6,7 +6,6 @@ module.exports = {
     twitter: `@momochitama`,
   },
   plugins: [
-    `gatsby-plugin-feed`,
     `gatsby-plugin-image`,
     `gatsby-plugin-typegen`,
     {

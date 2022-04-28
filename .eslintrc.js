@@ -85,6 +85,10 @@ module.exports = {
         extensions: ['.jsx', '.tsx'],
       },
     ],
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function' },
+    ],
   },
   // TSのときだけprop-typesを使わなくてもよくする
   overrides: [
