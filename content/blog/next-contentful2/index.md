@@ -1,6 +1,6 @@
 ---
 title: "Next.js + Contentfulでポートフォリオを作る その2 開発編"
-date: "20220426"
+date: "20220429"
 tags: ["プログラミング", "Next.js", "Contentful"]
 thumbnail: "thumbnail.png"
 ---
