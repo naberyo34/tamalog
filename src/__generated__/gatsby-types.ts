@@ -4445,25 +4445,14 @@ declare namespace GatsbyTypes {
     };
   };
 
-  type TopIndexQueryVariables = Exact<{ [key: string]: never }>;
+  type SeoQueryVariables = Exact<{ [key: string]: never }>;
 
-  type TopIndexQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
+  type SeoQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
       >;
-    };
+    }>;
   };
 
   type BlogPostQueryVariables = Exact<{
@@ -4487,6 +4476,51 @@ declare namespace GatsbyTypes {
         >;
       }
     >;
+  };
+
+  type AllIndexQueryVariables = Exact<{ [key: string]: never }>;
+
+  type AllIndexQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'url'>>;
+    }>;
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
+
+  type TopIndexQueryVariables = Exact<{ [key: string]: never }>;
+
+  type TopIndexQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
   };
 
   type TagIndexQueryVariables = Exact<{
@@ -4598,30 +4632,6 @@ declare namespace GatsbyTypes {
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
 
-  type AllIndexQueryVariables = Exact<{ [key: string]: never }>;
-
-  type AllIndexQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'url'>>;
-    }>;
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
-    };
-  };
-
   type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
 
   type PagesQueryQuery = {
@@ -4631,15 +4641,5 @@ declare namespace GatsbyTypes {
     readonly allSitePage: {
       readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
     };
-  };
-
-  type SeoQueryVariables = Exact<{ [key: string]: never }>;
-
-  type SeoQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
-      >;
-    }>;
   };
 }
