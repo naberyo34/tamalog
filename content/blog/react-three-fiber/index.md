@@ -1,5 +1,5 @@
 ---
-title: "ReactでWeb 3D表現！react-three-fiberを使ってみよう"
+title: "Reactで3D表現！react-three-fiberを使ってみよう"
 date: "20220430"
 tags: ["プログラミング", "React", "Three.js", "react-three-fiber"]
 thumbnail: "thumbnail.png"
@@ -58,7 +58,7 @@ function init() {
 }
 ```
 
-しかし、実は現代のフロントエンド事情に合わせて「Three.jsとReactを併用したい」というニーズに特化したライブラリ、[react-three-fiber](https://github.com/pmndrs/react-three-fiber)というものが存在します。
+しかし、実は現代のフロントエンド事情に合わせて「Three.jsとReactを併用したい」というニーズに応えてくれるライブラリ、[react-three-fiber](https://github.com/pmndrs/react-three-fiber)というものが存在します。
 
 これを使うと、なんとThree.jsのコードを
 
@@ -501,7 +501,7 @@ const Home: NextPage = () => (
 
 と書いても動かない……なぜ……といった場面にも遭遇しました。公式ドキュメントがそれほど完璧にまとまっているわけではないので、適宜じっくり調べながら進める必要があると思います。
 
-### Three.js関連の型定義が難しい
+### Three.js関連の型解決が難しい
 
 これはreact-three-fiberというよりはThree.js自体の問題なのですが、Three.js + TypeScriptでの開発に慣れている方でないと「どんな型が用意されているのか？」「取得した要素にどんな型を当てればいいのか？」を判断するのが少し難しいです。なるべく`any`を使わないように頑張りましたが、あちこち調べ回る必要がありました。笑
 
