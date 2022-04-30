@@ -205,7 +205,7 @@ const Box: React.FC<BoxProps> = (props) => {
 
 回転する立方体は「Box」コンポーネントとして記述されています。`useState`でホバー、クリック時のstateを管理しており、`onClick`や`onPointerOver`、`onPointerOut`で見た目が変わるように設定されています。
 
-`useFrame`というreact-three-fiberで用意されているCustom hookでは`requestAnimationFrame`相当の記述ができ、ここでは「1フレームごとにメッシュのx軸角度を+0.01する」という処理が行われています。かなり直感的にアニメーションを作成することができますね。
+react-three-fiberが用意している`useFrame`というCustom hookでは`requestAnimationFrame`相当の記述ができ、ここでは「1フレームごとにメッシュのx軸角度を+0.01する」という処理が行われています。かなり直感的にアニメーションを作成することができますね。
 
 ### Canvas
 
