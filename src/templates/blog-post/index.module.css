@@ -21,9 +21,51 @@
 }
 
 .tocHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   padding-bottom: 1em;
+  font-size: 16px;
   font-weight: bold;
+  text-align: left;
   border-bottom: 1px solid #ddd;
+}
+
+.tocHeading:hover {
+  cursor: pointer;
+}
+
+.tocHeadingArrowTop {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: solid 2px #3a3a3a;
+  border-left: solid 2px #3a3a3a;
+  transform: rotate(45deg);
+}
+
+.tocHeadingIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tocHeadingIconVertical {
+  position: absolute;
+  display: block;
+  width: 2px;
+  height: 12px;
+  background-color: #3a3a3a;
+}
+
+.tocHeadingIconHorizontal {
+  position: absolute;
+  display: block;
+  width: 12px;
+  height: 2px;
+  background-color: #3a3a3a;
 }
 
 .tocInner li {
@@ -47,6 +89,10 @@
     padding: 20px;
     font-size: 14px;
     background: #fff;
+  }
+
+  .tocHeading {
+    font-size: 14px;
   }
 }
 

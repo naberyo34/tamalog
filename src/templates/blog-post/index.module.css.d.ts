@@ -4,6 +4,10 @@ declare const styles: {
   readonly thumbnailWrapper: string;
   readonly toc: string;
   readonly tocHeading: string;
+  readonly tocHeadingArrowTop: string;
+  readonly tocHeadingIconWrapper: string;
+  readonly tocHeadingIconVertical: string;
+  readonly tocHeadingIconHorizontal: string;
   readonly tocInner: string;
   readonly section: string;
   readonly shareButtonsWrapper: string;

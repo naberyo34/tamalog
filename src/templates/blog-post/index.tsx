@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '@/templates/Layout';
@@ -13,6 +13,7 @@ const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
   location,
   data,
 }) => {
+  const [isOpenToc, setIsOpenToc] = useState(false);
   const siteUrl = data.site?.siteMetadata?.url;
   const canonicalUrl = siteUrl ? `${siteUrl}${location.pathname}` : '';
   const post = data.markdownRemark;
@@ -46,13 +47,28 @@ const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostQuery>> = ({
           )}
           {post?.tableOfContents && (
             <section className={styles.toc}>
-              <h2 className={styles.tocHeading}>もくじ</h2>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: post.tableOfContents || '',
-                }}
-                className={styles.tocInner}
-              />
+              {/* TODO: 切り分けたほうがいいかも */}
+              <button
+                className={styles.tocHeading}
+                type="button"
+                onClick={() => setIsOpenToc(!isOpenToc)}
+              >
+                もくじ
+                <span className={styles.tocHeadingIconWrapper}>
+                  {!isOpenToc && (
+                    <span className={styles.tocHeadingIconVertical} />
+                  )}
+                  <span className={styles.tocHeadingIconHorizontal} />
+                </span>
+              </button>
+              {isOpenToc && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: post.tableOfContents || '',
+                  }}
+                  className={styles.tocInner}
+                />
+              )}
             </section>
           )}
           <section
