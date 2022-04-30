@@ -4398,6 +4398,37 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
   };
 
+  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
+
+  type RelatedPostsQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, 'excerpt'> & {
+          readonly fields: Maybe<Pick<Fields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
+              readonly thumbnail: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+        }
+      >;
+    };
+  };
+
+  type SeoQueryVariables = Exact<{ [key: string]: never }>;
+
+  type SeoQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
+      >;
+    }>;
+  };
+
   type BlogPostQueryVariables = Exact<{
     id: Scalars['String'];
   }>;
@@ -4554,27 +4585,6 @@ declare namespace GatsbyTypes {
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
 
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSiteFunction: {
-      readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>>;
-    };
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
-  };
-
-  type SeoQueryVariables = Exact<{ [key: string]: never }>;
-
-  type SeoQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description' | 'url' | 'twitter'>
-      >;
-    }>;
-  };
-
   type TopIndexQueryVariables = Exact<{ [key: string]: never }>;
 
   type TopIndexQuery = {
@@ -4596,24 +4606,14 @@ declare namespace GatsbyTypes {
     };
   };
 
-  type RelatedPostsQueryVariables = Exact<{ [key: string]: never }>;
+  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
 
-  type RelatedPostsQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, 'excerpt'> & {
-          readonly fields: Maybe<Pick<Fields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<Frontmatter, 'date' | 'tags' | 'title'> & {
-              readonly thumbnail: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-        }
-      >;
+  type PagesQueryQuery = {
+    readonly allSiteFunction: {
+      readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>>;
+    };
+    readonly allSitePage: {
+      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
     };
   };
 }

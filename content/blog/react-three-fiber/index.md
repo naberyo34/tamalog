@@ -58,7 +58,7 @@ function init() {
 }
 ```
 
-しかし、実はそんな現代のフロントエンド事情に合わせて「Three.jsとReactを併用したい」というニーズに特化したライブラリ、[react-three-fiber](https://github.com/pmndrs/react-three-fiber)というものが存在します。
+しかし、実は現代のフロントエンド事情に合わせて「Three.jsとReactを併用したい」というニーズに特化したライブラリ、[react-three-fiber](https://github.com/pmndrs/react-three-fiber)というものが存在します。
 
 これを使うと、なんとThree.jsのコードを
 
