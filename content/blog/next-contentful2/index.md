@@ -100,7 +100,7 @@ const Profile: NextPage<Props> = ({ text }) => (
 export default Profile;
 ```
 
-リッチテキストがJSXとして展開され、あらかじめ設定したスタイルnのとおり表示されます！
+リッチテキストがJSXとして展開され、あらかじめ設定したスタイルのとおり表示されます！
 
 ![プロフィールページ](./01.png)
 
