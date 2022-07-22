@@ -92,6 +92,8 @@ WordPressについて少し調べるとすぐに気がつくのは、
 
 個人のポートフォリオサイトなどにも転用できる内容なので、WordPress初学者が作るにはちょうどいい課題だと思います。
 
+ なお、テーマファイルは[GitHub](https://github.com/naberyo34/wordpress-practice)で公開しているため、参考にしてください。
+
 ## ローカル環境の構築
 
 WordPressはPHPの動くサーバー上で稼働します。Docker等を利用してもよいですが、今回は手っ取り早く[Local](https://localwp.com/)でローカル環境を立てて、そこで作業することにしました。
